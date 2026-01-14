@@ -468,15 +468,15 @@ public class Mark_Attendance extends javax.swing.JFrame implements Runnable, Thr
 
     switch (currentDay) {
         case MONDAY, TUESDAY, WEDNESDAY, THURSDAY -> {
-            workStartTime = LocalTime.of(8, 0);      
+            workStartTime = LocalTime.of(6, 0);      
             workEndTime = LocalTime.of(13, 0);       
-            timeInGraceStart = LocalTime.of(8, 0);   
+            timeInGraceStart = LocalTime.of(6, 0);   
             timeInGraceEnd = LocalTime.of(9, 0);     
         }
         case FRIDAY -> {
-            workStartTime = LocalTime.of(8, 0);      
+            workStartTime = LocalTime.of(6, 0);      
             workEndTime = LocalTime.of(18, 0);       
-            timeInGraceStart = LocalTime.of(8, 0);   
+            timeInGraceStart = LocalTime.of(6, 0);   
             timeInGraceEnd = LocalTime.of(9, 0);     
         }
         case SATURDAY, SUNDAY -> {
@@ -486,9 +486,9 @@ public class Mark_Attendance extends javax.swing.JFrame implements Runnable, Thr
             return false;
         }
         default -> {
-            workStartTime = LocalTime.of(8, 0);
+            workStartTime = LocalTime.of(6, 0);
             workEndTime = LocalTime.of(13, 0);
-            timeInGraceStart = LocalTime.of(8, 0);
+            timeInGraceStart = LocalTime.of(6, 0);
             timeInGraceEnd = LocalTime.of(9, 0);
         }
     }
@@ -535,7 +535,7 @@ public class Mark_Attendance extends javax.swing.JFrame implements Runnable, Thr
         long seconds = duration.minusHours(hours).minusMinutes(minutes).getSeconds();
 
         if(!(hours >0 || (hours == 0 && minutes >= 10 ))){
-            long remainingMinutes = 15-minutes;
+            long remainingMinutes = 30-minutes;
             long remainingSeconds = 60-seconds;
 
             popUpMessage = String.format("Your work duration is less than 15 minutes \nYou can check out after: %d minutes and %d seconds", remainingMinutes,remainingSeconds);

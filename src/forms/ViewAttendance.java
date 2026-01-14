@@ -337,7 +337,13 @@ public class ViewAttendance extends javax.swing.JFrame {
     }//GEN-LAST:event_generatebtnActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        Date today = new Date();
+        dateChooserFrom.setDate(today);
+        dateChooserTo.setDate(today);
+    
         loadDataInTable();
+        
+        
     }//GEN-LAST:event_formComponentShown
 
     private void UserTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UserTableMouseClicked
@@ -540,8 +546,8 @@ public class ViewAttendance extends javax.swing.JFrame {
         // Update total hours label
         totalHours.setText(String.format("%.1f hours", totalHoursSum));
         
-        // Calculate remaining hours (assuming 180 hours required)
-        double remainingHoursValue = Math.max(0, 180.0 - totalHoursSum);
+        // Calculate remaining hours (assuming 160 hours required)
+        double remainingHoursValue = Math.max(0, 160.0 - totalHoursSum);
         remainingHours.setText(String.format("%.1f hours", remainingHoursValue));
         
         } catch (SQLException ex) {
@@ -585,7 +591,7 @@ public class ViewAttendance extends javax.swing.JFrame {
         //////////////////////////////////////////////////////////////////////////////////////////
         // Update the labels (JLabel components)
         totalHours.setText(String.format("%.1f hours", totalHoursValue));
-        double remaining = Math.max(0, 180.0 - totalHoursValue);
+        double remaining = Math.max(0, 160.0 - totalHoursValue);
         remainingHours.setText(String.format("%.1f hours", remaining));
 
     } catch (SQLException ex) {
@@ -701,8 +707,8 @@ public class ViewAttendance extends javax.swing.JFrame {
         sheet.createRow(rowNum++).createCell(0).setCellValue("IMMERSION SUMMARY");
         createLabelValueRow(sheet, rowNum++, "Total Required Hours:", "180 hours", labelStyle);
         createLabelValueRow(sheet, rowNum++, "Total Hours Completed:", String.format("%.1f hours", totalHours), labelStyle);
-        createLabelValueRow(sheet, rowNum++, "Hours Remaining:", String.format("%.1f hours", Math.max(0, 180.0 - totalHours)), labelStyle);
-        createLabelValueRow(sheet, rowNum++, "Completion Percentage:", String.format("%.1f%%", (totalHours / 180.0) * 100), labelStyle);
+        createLabelValueRow(sheet, rowNum++, "Hours Remaining:", String.format("%.1f hours", Math.max(0, 160.0 - totalHours)), labelStyle);
+        createLabelValueRow(sheet, rowNum++, "Completion Percentage:", String.format("%.1f%%", (totalHours / 160.0) * 100), labelStyle);
         createLabelValueRow(sheet, rowNum++, "Total Days Present:", String.valueOf(totalDaysPresent), labelStyle);
         createLabelValueRow(sheet, rowNum++, "Total Absences:", String.valueOf(totalAbsences), labelStyle);
         
