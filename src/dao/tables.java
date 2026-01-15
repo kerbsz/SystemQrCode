@@ -20,10 +20,11 @@ public class tables {
             st = con.createStatement();
             
             if(!tableExists(st, "ImmStudentdetails")){
-              st.executeUpdate("CREATE TABLE ImmStudentdetails (LRN BIGINT PRIMARY KEY, Name VARCHAR(255) NOT NULL, Gender VARCHAR(255) NOT NULL, Section VARCHAR(255) NOT NULL, Contact VARCHAR(255) NOT NULL, Adviser VARCHAR(255) NOT NULL, UniqueRegId VARCHAR(100) not null, imagename VARCHAR(100));");
+              st.executeUpdate("CREATE TABLE ImmStudentdetails (LRN BIGINT PRIMARY KEY, Name VARCHAR(255) NOT NULL, Gender VARCHAR(255) NOT NULL, Section VARCHAR(255) NOT NULL, Contact VARCHAR(255) NOT NULL, Adviser VARCHAR(255) NOT NULL, Workplace VARCHAR(255), UniqueRegId VARCHAR(100) not null, imagename VARCHAR(100))");
             }
+            
             if (!tableExists(st, "ImmStudentattendance")){
-                st.executeUpdate("CREATE TABLE ImmStudentattendance (LRN BIGINT NOT NULL, Name VARCHAR(255) NOT NULL, Gender VARCHAR(255) NOT NULL, Section VARCHAR(255) NOT NULL, Date DATE NOT NULL, TimeIn DATETIME, TimeOut DATETIME, WorkDuration VARCHAR(100))");
+                st.executeUpdate("CREATE TABLE ImmStudentattendance (LRN BIGINT NOT NULL, Name VARCHAR(255) NOT NULL, Gender VARCHAR(255) NOT NULL, Section VARCHAR(255) NOT NULL, Workplace VARCHAR(255), Date DATE NOT NULL, TimeIn DATETIME, TimeOut DATETIME, WorkDuration VARCHAR(100))");
             }
                JOptionPane.showMessageDialog(null, "Tables Checked/ Created Successfully");     
         

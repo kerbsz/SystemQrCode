@@ -11,7 +11,7 @@ import java.sql.DriverManager;
  * @author Sexon
  */
 public class ConnectionProvider {
-    private static final String DB_NAME = "QrCode_Automated_System";
+    private static final String DB_NAME = "FinalQrCode_Automated_System";
     private static final String DB_URL = "jdbc:mysql://localhost:3306/";
     private static final String DB_USERNAME = "root"; 
     private static final String DB_PASSWORD = "kerbypogi"; 

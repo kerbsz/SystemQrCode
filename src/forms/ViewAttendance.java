@@ -172,7 +172,7 @@ public class ViewAttendance extends javax.swing.JFrame {
         remainingHours.setText("----------- ");
 
         resetFilter.setBackground(new java.awt.Color(255, 0, 0));
-        resetFilter.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        resetFilter.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         resetFilter.setForeground(new java.awt.Color(255, 255, 255));
         resetFilter.setText("Reset");
         resetFilter.addActionListener(new java.awt.event.ActionListener() {
@@ -181,8 +181,8 @@ public class ViewAttendance extends javax.swing.JFrame {
             }
         });
 
-        generatebtn.setBackground(new java.awt.Color(153, 153, 153));
-        generatebtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        generatebtn.setBackground(new java.awt.Color(255, 255, 0));
+        generatebtn.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
         generatebtn.setForeground(new java.awt.Color(0, 0, 0));
         generatebtn.setText("Generate Report");
         generatebtn.addActionListener(new java.awt.event.ActionListener() {
@@ -203,21 +203,24 @@ public class ViewAttendance extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(296, 296, 296)
                         .addComponent(btnExistRegis, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dateChooserFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dateChooserTo, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(223, 223, 223))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(71, 71, 71)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(dateChooserFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(dateChooserTo, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(resetFilter))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
@@ -228,7 +231,6 @@ public class ViewAttendance extends javax.swing.JFrame {
                                 .addComponent(remainingH_lbl)
                                 .addGap(14, 14, 14)
                                 .addComponent(remainingHours, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(resetFilter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(generatebtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 11, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -240,25 +242,29 @@ public class ViewAttendance extends javax.swing.JFrame {
                 .addComponent(btnExistRegis, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
+                .addContainerGap(11, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(dateChooserFrom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dateChooserTo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(resetFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(dateChooserFrom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(dateChooserTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(totalH_lbl)
@@ -267,10 +273,9 @@ public class ViewAttendance extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(remainingH_lbl)
                             .addComponent(remainingHours))
-                        .addGap(18, 18, 18)
-                        .addComponent(resetFilter)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(generatebtn)))
+                        .addGap(150, 150, 150)
+                        .addComponent(generatebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26))
         );
 
@@ -355,7 +360,7 @@ public class ViewAttendance extends javax.swing.JFrame {
     }//GEN-LAST:event_UserTableMouseClicked
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
-        // TODO add your handling code here:
+        loadDataInTable();
     }//GEN-LAST:event_txtSearchActionPerformed
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
@@ -420,49 +425,47 @@ public class ViewAttendance extends javax.swing.JFrame {
     
     private void loadDataInTable() {
     try {
-        // Clear table
         DefaultTableModel model = (DefaultTableModel) UserTable.getModel();
         model.setRowCount(0);
-        
-        // Set columns
-        model.setColumnIdentifiers(new String[]{
-            "LRN", "Name","Gender", "Section", "Date", "Time In", "Time Out", "Work Duration"
-        });
-        
-        Connection con = ConnectionProvider.getCon();
-        
-        // Build query
-        StringBuilder sqlQuery = new StringBuilder();
-        sqlQuery.append("SELECT ud.LRN, ud.Name, ud.Gender, ud.Section, ua.Date, ua.TimeIn, ua.TimeOut, ua.workduration ");
-        sqlQuery.append("FROM ImmStudentdetails AS ud ");
-        sqlQuery.append("INNER JOIN ImmStudentattendance AS ua ON ud.LRN = ua.LRN ");
 
-        
-        // Get filter values
+        model.setColumnIdentifiers(new String[]{
+            "LRN", "Name", "Gender", "Section", "Work Place", "Date", "Time In", "Time Out", "Work Duration"
+        });
+
+        Connection con = ConnectionProvider.getCon();
+
+        StringBuilder sqlQuery = new StringBuilder();
+        sqlQuery.append(
+            "SELECT ud.LRN, ud.Name, ud.Gender, ud.Section, ud.workplace, " +
+            "ua.Date, ua.TimeIn, ua.TimeOut, ua.workduration " +
+            "FROM ImmStudentdetails AS ud " +
+            "INNER JOIN ImmStudentattendance AS ua ON ud.LRN = ua.LRN "
+        );
+
         String searchText = txtSearch.getText().trim();
         Date fromDateFromCal = dateChooserFrom.getDate();
         Date toDateFromCal = dateChooserTo.getDate();
-        
+
         LocalDate fromDate = null;
         if (fromDateFromCal != null) {
             fromDate = fromDateFromCal.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         }
-        
+
         LocalDate toDate = null;
         if (toDateFromCal != null) {
             toDate = toDateFromCal.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         }
-        
-        
+
         boolean hasWhere = false;
-        
-        // Add search filter
+
         if (!searchText.isEmpty()) {
-            sqlQuery.append("WHERE (ud.Name LIKE '%").append(searchText).append("%' OR ud.LRN LIKE '%").append(searchText).append("%' OR ud.Section LIKE '%").append(searchText).append("%') ");
+            sqlQuery.append("WHERE (ud.Name LIKE '%").append(searchText)
+                    .append("%' OR ud.LRN LIKE '%").append(searchText)
+                    .append("%' OR ud.Section LIKE '%").append(searchText)
+                    .append("%' OR ud.workplace LIKE '%").append(searchText).append("%') ");
             hasWhere = true;
         }
-        
-        // Add date filters
+
         if (fromDate != null && toDate != null) {
             if (hasWhere) {
                 sqlQuery.append("AND ");
@@ -480,44 +483,32 @@ public class ViewAttendance extends javax.swing.JFrame {
             }
             sqlQuery.append("ua.Date = '").append(fromDate).append("' ");
         }
-        
+
         sqlQuery.append("ORDER BY ua.Date DESC, ud.Name ASC");
-        
+
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery(sqlQuery.toString());
-        
-        // Format date and time
-        java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("MMM dd, yyyy");
-        java.text.SimpleDateFormat timeFormat = new java.text.SimpleDateFormat("hh:mm a");
-        
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a");
+
         double totalHoursSum = 0.0;
-        
+
         while (rs.next()) {
             String lrn = rs.getString("LRN");
             String name = rs.getString("Name");
-            String gender = rs.getString("Gender");     
+            String gender = rs.getString("Gender");
             String section = rs.getString("Section");
-            java.sql.Date date = rs.getDate("Date");
+            String workplace = rs.getString("workplace");
+            Date date = rs.getDate("Date");
             Timestamp timeIn = rs.getTimestamp("TimeIn");
             Timestamp timeOut = rs.getTimestamp("TimeOut");
             String workDuration = rs.getString("workduration");
-            
-            // Format date
+
             String formattedDate = dateFormat.format(date);
-            
-            // Format time in
-            String formattedTimeIn = "N/A";
-            if (timeIn != null) {
-                formattedTimeIn = timeFormat.format(timeIn);
-            }
-            
-            // Format time out
-            String formattedTimeOut = "N/A";
-            if (timeOut != null) {
-                formattedTimeOut = timeFormat.format(timeOut);
-            }
-            
-            // Calculate hours for total
+            String formattedTimeIn = (timeIn != null) ? timeFormat.format(timeIn) : "N/A";
+            String formattedTimeOut = (timeOut != null) ? timeFormat.format(timeOut) : "N/A";
+
             if (workDuration != null && !workDuration.isEmpty()) {
                 try {
                     String[] parts = workDuration.split("Hours");
@@ -526,15 +517,16 @@ public class ViewAttendance extends javax.swing.JFrame {
                         totalHoursSum += hours;
                     }
                 } catch (Exception e) {
-                    // Skip if parsing fails
+                    // Skip invalid formats
                 }
             }
-            
+
             Object[] row = {
                 lrn,
                 name,
-                gender != null ? gender : "N/A",        // ✅ ADD GENDER IN CORRECT POSITION
-                section != null ? section : "N/A",      // ✅ SECTION IN CORRECT POSITION
+                gender != null ? gender : "N/A",
+                section != null ? section : "N/A",
+                workplace != null ? workplace : "N/A",
                 formattedDate,
                 formattedTimeIn,
                 formattedTimeOut,
@@ -542,28 +534,20 @@ public class ViewAttendance extends javax.swing.JFrame {
             };
             model.addRow(row);
         }
-        
-        // Update total hours label
+
         totalHours.setText(String.format("%.1f hours", totalHoursSum));
-        
-        // Calculate remaining hours (assuming 160 hours required)
         double remainingHoursValue = Math.max(0, 160.0 - totalHoursSum);
         remainingHours.setText(String.format("%.1f hours", remainingHoursValue));
-        
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(this, 
-                "Database Error: " + ex.getMessage(),
-                "Error", 
-                JOptionPane.ERROR_MESSAGE);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(this, 
-                "Error: " + ex.getMessage(),
-                "Error", 
-                JOptionPane.ERROR_MESSAGE);
-        }
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Database Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    } catch (Exception ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
+}
+
     
     private void loadStudentHours(String lrn) {
     try {
@@ -616,7 +600,7 @@ public class ViewAttendance extends javax.swing.JFrame {
         String gender = rsStudent.getString("Gender");
         String section = rsStudent.getString("Section");
         String classAdviser = rsStudent.getString("Adviser");
-        
+        String workplace = rsStudent.getString("workplace");
         String attendanceQuery = "SELECT Date, TimeIn, TimeOut, workduration " +
                         "FROM ImmStudentattendance WHERE LRN = ? ORDER BY Date ASC";
         PreparedStatement pstAttendance = con.prepareStatement(
@@ -663,6 +647,7 @@ public class ViewAttendance extends javax.swing.JFrame {
         createLabelValueRow(sheet, rowNum++, "Gender:", gender != null ? gender : "N/A", labelStyle);
         createLabelValueRow(sheet, rowNum++, "Section:", section != null ? section : "N/A", labelStyle);
         createLabelValueRow(sheet, rowNum++, "Class Adviser:", classAdviser != null ? classAdviser : "N/A", labelStyle);
+        createLabelValueRow(sheet, rowNum++, "Work Place:", workplace != null ? workplace : "N/A", labelStyle);
         createLabelValueRow(sheet, rowNum++, "Report Generated:", 
             new SimpleDateFormat("MMM dd, yyyy HH:mm").format(new Date()), labelStyle);
         rowNum++;
@@ -705,7 +690,7 @@ public class ViewAttendance extends javax.swing.JFrame {
         }
         
         sheet.createRow(rowNum++).createCell(0).setCellValue("IMMERSION SUMMARY");
-        createLabelValueRow(sheet, rowNum++, "Total Required Hours:", "180 hours", labelStyle);
+        createLabelValueRow(sheet, rowNum++, "Total Required Hours:", "160 hours", labelStyle);
         createLabelValueRow(sheet, rowNum++, "Total Hours Completed:", String.format("%.1f hours", totalHours), labelStyle);
         createLabelValueRow(sheet, rowNum++, "Hours Remaining:", String.format("%.1f hours", Math.max(0, 160.0 - totalHours)), labelStyle);
         createLabelValueRow(sheet, rowNum++, "Completion Percentage:", String.format("%.1f%%", (totalHours / 160.0) * 100), labelStyle);

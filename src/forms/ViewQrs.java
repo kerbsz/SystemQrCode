@@ -178,7 +178,7 @@ public class ViewQrs extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExistRegisActionPerformed
 
     private void lblImageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImageMouseClicked
-
+        
     }//GEN-LAST:event_lblImageMouseClicked
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown

@@ -81,7 +81,7 @@ public class DeleteUser extends javax.swing.JFrame {
 
             },
             new String [] {
-                "LRN", "Name", "Gender", "Section", "Contact", "Adviser", "Registered ID", "Image Name"
+                "LRN", "Name", "Gender", "Section", "Contact", "Adviser", "Work Place", "Image Name"
             }
         ));
         userTable.setSelectionBackground(new java.awt.Color(0, 0, 255));
@@ -225,7 +225,7 @@ public class DeleteUser extends javax.swing.JFrame {
                 resultSet.getString("section"),
                 resultSet.getString("contact"),
                 resultSet.getString("Adviser"),
-                resultSet.getString("UniqueRegID"),
+                resultSet.getString("workplace"),
                 resultSet.getString("imagename"),});
             
             }

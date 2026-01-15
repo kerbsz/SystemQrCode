@@ -55,7 +55,6 @@ public class ViewUser extends javax.swing.JFrame {
         UserTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1000, 480));
         setMinimumSize(new java.awt.Dimension(1000, 480));
         setUndecorated(true);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -125,7 +124,7 @@ public class ViewUser extends javax.swing.JFrame {
 
             },
             new String [] {
-                "LRN", "Name", "Gender", "Section", "Contact", "Adviser", "Registered ID", "Image Name"
+                "LRN", "Name", "Gender", "Section", "Contact", "Adviser", "Work Place", "Image Name"
             }
         ));
         UserTable.setSelectionBackground(new java.awt.Color(0, 0, 255));
@@ -286,7 +285,7 @@ public class ViewUser extends javax.swing.JFrame {
                     rs.getString("Section"),
                     rs.getString("Contact"),
                     rs.getString("Adviser"),
-                    rs.getString("UniqueRegId"),
+                    rs.getString("Workplace"),
                     rs.getString("imagename")
                 });
             }
