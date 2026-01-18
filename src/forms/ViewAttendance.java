@@ -47,7 +47,7 @@ public class ViewAttendance extends javax.swing.JFrame {
      */
     public ViewAttendance() {
         initComponents();
-        BDutility.setImage(this, "images/registrationBG.png",1010, 510);
+        BDutility.setImage(this, "images/registrationBG.png",1000, 480);
         this.getRootPane().setBorder(BorderFactory.createMatteBorder(2,2,2,2, Color.GRAY));
         
         dateChooserFrom.setDateFormatString("yyyy-MM-dd");
@@ -160,14 +160,14 @@ public class ViewAttendance extends javax.swing.JFrame {
         totalH_lbl.setForeground(new java.awt.Color(0, 255, 0));
         totalH_lbl.setText("Total Hours: ");
 
-        totalHours.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        totalHours.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         totalHours.setForeground(new java.awt.Color(255, 255, 255));
         totalHours.setText("----------------");
 
         remainingH_lbl.setForeground(new java.awt.Color(204, 0, 0));
         remainingH_lbl.setText("Remaining Hours: ");
 
-        remainingHours.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        remainingHours.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         remainingHours.setForeground(new java.awt.Color(255, 255, 255));
         remainingHours.setText("----------- ");
 
@@ -222,17 +222,17 @@ public class ViewAttendance extends javax.swing.JFrame {
                                         .addComponent(resetFilter))))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(totalH_lbl)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(totalHours, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(totalHours))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(remainingH_lbl)
-                                .addGap(14, 14, 14)
-                                .addComponent(remainingHours, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(generatebtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 11, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(remainingHours))
+                            .addComponent(generatebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 12, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -492,7 +492,6 @@ public class ViewAttendance extends javax.swing.JFrame {
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
         SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a");
 
-        double totalHoursSum = 0.0;
 
         while (rs.next()) {
             String lrn = rs.getString("LRN");
@@ -509,17 +508,6 @@ public class ViewAttendance extends javax.swing.JFrame {
             String formattedTimeIn = (timeIn != null) ? timeFormat.format(timeIn) : "N/A";
             String formattedTimeOut = (timeOut != null) ? timeFormat.format(timeOut) : "N/A";
 
-            if (workDuration != null && !workDuration.isEmpty()) {
-                try {
-                    String[] parts = workDuration.split("Hours");
-                    if (parts.length > 0) {
-                        double hours = Double.parseDouble(parts[0].trim());
-                        totalHoursSum += hours;
-                    }
-                } catch (Exception e) {
-                    // Skip invalid formats
-                }
-            }
 
             Object[] row = {
                 lrn,
@@ -535,9 +523,8 @@ public class ViewAttendance extends javax.swing.JFrame {
             model.addRow(row);
         }
 
-        totalHours.setText(String.format("%.1f hours", totalHoursSum));
-        double remainingHoursValue = Math.max(0, 160.0 - totalHoursSum);
-        remainingHours.setText(String.format("%.1f hours", remainingHoursValue));
+         totalHours.setText("Pick a ST");
+         remainingHours.setText("Pick a ST");
 
     } catch (SQLException ex) {
         ex.printStackTrace();
