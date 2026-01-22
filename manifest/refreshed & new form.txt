@@ -1,0 +1,36 @@
+ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        System.exit(0);
+    }                                        
+
+    private void btnMarkAttendanceActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+        new Mark_Attendance().setVisible(true);
+    }                                                 
+
+    private void btnRegisterUserActionPerformed(java.awt.event.ActionEvent evt) {                                                
+         new UserRegistration().setVisible(true);
+        
+    }                                               
+
+    private void btnGenerateQrActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        new GenerateQr().setVisible(true);
+    }                                             
+
+    private void btnViewAttendanceActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+        new ViewAttendance().setVisible(true);
+    }                                                 
+
+    private void tbnViewUserActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        new ViewUser().setVisible(true);
+    }                                           
+
+    private void btnUpdateUserActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        new UpdateUser().setVisible(true);
+    }                                             
+
+    private void btnDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        new DeleteUser().setVisible(true);
+    }                                             
+
+    private void btnViewQrActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        new ViewQrs().setVisible(true);
+    }

@@ -114,6 +114,8 @@ public class Mark_Attendance extends javax.swing.JFrame {
                 "Error", 
                 JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
+            
+            txtScannerInput.setText("");
         } finally {
             // Clear the text field for next scan
             txtScannerInput.setText("");
@@ -181,9 +183,9 @@ public class Mark_Attendance extends javax.swing.JFrame {
 
         lblName.setBackground(new java.awt.Color(70, 73, 75));
         lblName.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        lblName.setForeground(new java.awt.Color(255, 255, 255));
+        lblName.setForeground(new java.awt.Color(0, 255, 0));
+        lblName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblName.setToolTipText("");
-        lblName.setEnabled(false);
         lblName.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblName.setName(""); // NOI18N
         lblName.setOpaque(true);
@@ -192,7 +194,6 @@ public class Mark_Attendance extends javax.swing.JFrame {
         lblTimeInTimeOut.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         lblTimeInTimeOut.setForeground(new java.awt.Color(0, 255, 0));
         lblTimeInTimeOut.setToolTipText("");
-        lblTimeInTimeOut.setEnabled(false);
         lblTimeInTimeOut.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblTimeInTimeOut.setOpaque(true);
 
@@ -213,21 +214,23 @@ public class Mark_Attendance extends javax.swing.JFrame {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtScannerInput, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(lblTimeInTimeOut, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblImage, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblImage, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                    .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(74, 74, 74))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnExistRegis, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(322, 322, 322)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnExistRegis, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblTimeInTimeOut, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(166, 166, 166))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,9 +248,7 @@ public class Mark_Attendance extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lblTimeInTimeOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -256,7 +257,9 @@ public class Mark_Attendance extends javax.swing.JFrame {
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtScannerInput, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(70, 70, 70))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblTimeInTimeOut, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32))))
         );
 
         pack();
@@ -474,11 +477,11 @@ public class Mark_Attendance extends javax.swing.JFrame {
             long minutes = duration.minusHours(hours).toMinutes();
             long seconds = duration.minusHours(hours).minusMinutes(minutes).getSeconds();
 
-            if (!(hours > 0 || (hours == 0 && minutes >= 10))) {
+            if (!(hours > 0 || (hours == 0 && minutes >= 30))) {
                 long remainingMinutes = 30 - minutes;
                 long remainingSeconds = 60 - seconds;
 
-                popUpMessage = String.format("Your work duration is less than 15 minutes \nYou can check out after: %d minutes and %d seconds", remainingMinutes, remainingSeconds);
+                popUpMessage = String.format("Your work duration is less than 30 minutes \nYou can check out after: %d minutes and %d seconds", remainingMinutes, remainingSeconds);
                 popUpHeader = "Duration Warning";
 
                 showPopUpForCertainDuration(popUpMessage, popUpHeader, JOptionPane.WARNING_MESSAGE);

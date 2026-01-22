@@ -94,7 +94,7 @@ public class UserRegistration extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Inser your photo:");
+        jLabel6.setText("Insert your photo:");
         jLabel6.setMaximumSize(new java.awt.Dimension(25, 25));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N

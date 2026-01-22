@@ -222,36 +222,36 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnMarkAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarkAttendanceActionPerformed
-        BDutility.openForm(Mark_Attendance.class.getSimpleName(), new Mark_Attendance());
+        new Mark_Attendance().setVisible(true);
     }//GEN-LAST:event_btnMarkAttendanceActionPerformed
 
     private void btnRegisterUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterUserActionPerformed
-        BDutility.openForm(UserRegistration.class.getSimpleName(), new UserRegistration());
+         new UserRegistration().setVisible(true);
         
     }//GEN-LAST:event_btnRegisterUserActionPerformed
 
     private void btnGenerateQrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateQrActionPerformed
-        BDutility.openForm(GenerateQr.class.getSimpleName(), new GenerateQr());
+        new GenerateQr().setVisible(true);
     }//GEN-LAST:event_btnGenerateQrActionPerformed
 
     private void btnViewAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAttendanceActionPerformed
-        BDutility.openForm(ViewAttendance.class.getSimpleName(), new ViewAttendance());
+        new ViewAttendance().setVisible(true);
     }//GEN-LAST:event_btnViewAttendanceActionPerformed
 
     private void tbnViewUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbnViewUserActionPerformed
-       BDutility.openForm(ViewUser.class.getSimpleName(), new ViewUser());
+        new ViewUser().setVisible(true);
     }//GEN-LAST:event_tbnViewUserActionPerformed
 
     private void btnUpdateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateUserActionPerformed
-        BDutility.openForm(UpdateUser.class.getSimpleName(), new UpdateUser());
+        new UpdateUser().setVisible(true);
     }//GEN-LAST:event_btnUpdateUserActionPerformed
 
     private void btnDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteUserActionPerformed
-        BDutility.openForm(DeleteUser.class.getSimpleName(), new DeleteUser());
+        new DeleteUser().setVisible(true);
     }//GEN-LAST:event_btnDeleteUserActionPerformed
 
     private void btnViewQrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewQrActionPerformed
-        BDutility.openForm(ViewQrs.class.getSimpleName(), new ViewQrs());
+        new ViewQrs().setVisible(true);
     }//GEN-LAST:event_btnViewQrActionPerformed
 
     /**
