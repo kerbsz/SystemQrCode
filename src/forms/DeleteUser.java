@@ -214,7 +214,14 @@ public class DeleteUser extends javax.swing.JFrame {
                 query = "SELECT * FROM immstudentdetails ";
             
             }else{
-                query = "SELECT * FROM immstudentdetails WHERE name LIKE'%" + searchText+ "%' OR LRN LIKE '%" + searchText+ "%'";
+                query = "SELECT * FROM immstudentdetails WHERE " 
+                        + "LRN LIKE '%" + searchText + "%' OR " 
+                        + "Name LIKE '%" + searchText + "%' OR " 
+                        + "Gender LIKE '%" + searchText + "%' OR " 
+                        + "Section LIKE '%" + searchText + "%' OR "
+                        + "Contact LIKE '%" + searchText + "%' OR " 
+                        + "Adviser LIKE '%" + searchText + "%' OR " 
+                        + "Workplace LIKE '%" + searchText + "%'";
             }
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()){

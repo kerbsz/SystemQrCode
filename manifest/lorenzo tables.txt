@@ -1,0 +1,44 @@
+package dao;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
+
+
+public class tables {
+    public static void main(String[]args){
+        Connection con = null;
+        Statement st = null;
+        try{
+            con = ConnectionProvider.getCon();
+            st = con.createStatement();
+            
+            
+            if (!tableExists(st, "logbook_records")){
+                st.executeUpdate("CREATE TABLE logbook_records (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL, grade VARCHAR(50) NOT NULL, strand VARCHAR(50) NOT NULL, section VARCHAR(50) NOT NULL, time_in DATETIME, time_out DATETIME, date DATE NOT NULL)");
+            }
+            
+            JOptionPane.showMessageDialog(null, "Tables Checked/ Created Successfully");     
+        
+        }catch (Exception ex){
+            JOptionPane.showMessageDialog(null, ex);    
+        }finally{
+            try{
+                if (con !=null){
+                    con.close();
+                }
+                if (st!=null){
+                    st.close();
+                }
+            }catch(Exception ex){
+                ex.printStackTrace();
+            }
+        }
+        
+    }
+    
+    private static boolean tableExists(Statement st, String tableName)throws Exception{
+        ResultSet resultSet = st.executeQuery("SHOW TABLES LIKE '" + tableName + "'");
+        return resultSet.next();
+    }
+}

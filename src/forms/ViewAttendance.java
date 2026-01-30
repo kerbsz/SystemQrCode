@@ -53,6 +53,12 @@ public class ViewAttendance extends javax.swing.JFrame {
         dateChooserFrom.setDateFormatString("yyyy-MM-dd");
         dateChooserTo.setDateFormatString("yyyy-MM-dd");
         
+        loadWorkplacesIntoComboBox();
+        comboWorkplace.setSelectedIndex(0);
+        loadDataInTable();
+        loadFilteredAttendanceCount();
+        
+        
     }
 
     /**
@@ -80,6 +86,11 @@ public class ViewAttendance extends javax.swing.JFrame {
         remainingHours = new javax.swing.JLabel();
         resetFilter = new javax.swing.JButton();
         generatebtn = new javax.swing.JButton();
+        comboWorkplace = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        btnToday = new javax.swing.JButton();
+        totalH_lbl1 = new javax.swing.JLabel();
+        attendanceCount = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -172,7 +183,7 @@ public class ViewAttendance extends javax.swing.JFrame {
         remainingHours.setText("----------- ");
 
         resetFilter.setBackground(new java.awt.Color(255, 0, 0));
-        resetFilter.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        resetFilter.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         resetFilter.setForeground(new java.awt.Color(255, 255, 255));
         resetFilter.setText("Reset");
         resetFilter.addActionListener(new java.awt.event.ActionListener() {
@@ -191,6 +202,33 @@ public class ViewAttendance extends javax.swing.JFrame {
             }
         });
 
+        comboWorkplace.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Item 2", "Item 3", "Item 4" }));
+        comboWorkplace.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboWorkplaceActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Company:");
+
+        btnToday.setBackground(new java.awt.Color(255, 0, 0));
+        btnToday.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnToday.setForeground(new java.awt.Color(255, 255, 255));
+        btnToday.setText("Today");
+        btnToday.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTodayActionPerformed(evt);
+            }
+        });
+
+        totalH_lbl1.setForeground(new java.awt.Color(0, 255, 204));
+        totalH_lbl1.setText("Attendance Count:");
+
+        attendanceCount.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        attendanceCount.setForeground(new java.awt.Color(255, 255, 255));
+        attendanceCount.setText("----------- ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -204,68 +242,62 @@ public class ViewAttendance extends javax.swing.JFrame {
                         .addGap(296, 296, 296)
                         .addComponent(btnExistRegis, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(71, 71, 71)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dateChooserFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(dateChooserTo, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(resetFilter))))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(totalH_lbl)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(totalHours))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(remainingH_lbl)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(remainingHours))
-                            .addComponent(generatebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 12, Short.MAX_VALUE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(comboWorkplace, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(8, 8, 8)
+                                        .addComponent(jLabel3)
+                                        .addGap(115, 115, 115)
+                                        .addComponent(jLabel4))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(dateChooserFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(dateChooserTo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(8, 8, 8)
+                                        .addComponent(btnToday, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(resetFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 759, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(totalH_lbl1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(attendanceCount))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(totalH_lbl)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(totalHours))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(remainingH_lbl)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(remainingHours))
+                                    .addComponent(generatebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 8, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnExistRegis, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(11, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(resetFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(dateChooserFrom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(dateChooserTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnExistRegis, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(totalH_lbl1)
+                            .addComponent(attendanceCount))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(totalH_lbl)
                             .addComponent(totalHours))
@@ -275,7 +307,37 @@ public class ViewAttendance extends javax.swing.JFrame {
                             .addComponent(remainingHours))
                         .addGap(150, 150, 150)
                         .addComponent(generatebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(jLabel1)
+                        .addGap(12, 12, 12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel5))
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(comboWorkplace))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(btnToday, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(resetFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(dateChooserFrom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(dateChooserTo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(26, 26, 26))
         );
 
@@ -289,10 +351,11 @@ public class ViewAttendance extends javax.swing.JFrame {
 
     private void resetFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetFilterActionPerformed
         
+        comboWorkplace.setSelectedIndex(0); 
         txtSearch.setText("");
         dateChooserFrom.setDate(null);
         dateChooserTo.setDate(null);
-        
+
         loadDataInTable();
         
     }//GEN-LAST:event_resetFilterActionPerformed
@@ -375,6 +438,188 @@ public class ViewAttendance extends javax.swing.JFrame {
         loadDataInTable();
     }//GEN-LAST:event_dateChooserToPropertyChange
 
+    private void comboWorkplaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboWorkplaceActionPerformed
+            
+       Object selectedItem = comboWorkplace.getSelectedItem();
+       if (selectedItem == null) {
+           return; // Exit early if nothing is selected
+       }
+
+       String selectedWorkplace = selectedItem.toString();
+
+       DefaultTableModel model = (DefaultTableModel) UserTable.getModel();
+       model.setRowCount(0); 
+
+       String sql;
+       if (selectedWorkplace.equals("All Workplaces")) {
+           sql = "SELECT ud.LRN, ud.Name, ud.Gender, ud.Section, ud.workplace, " +
+                 "ua.Date, ua.TimeIn, ua.TimeOut, ua.workduration " +
+                 "FROM ImmStudentdetails AS ud " +
+                 "INNER JOIN ImmStudentattendance AS ua ON ud.LRN = ua.LRN " +
+                 "ORDER BY ua.Date DESC";
+       } else {
+           sql = "SELECT ud.LRN, ud.Name, ud.Gender, ud.Section, ud.workplace, " +
+                 "ua.Date, ua.TimeIn, ua.TimeOut, ua.workduration " +
+                 "FROM ImmStudentdetails AS ud " +
+                 "INNER JOIN ImmStudentattendance AS ua ON ud.LRN = ua.LRN " +
+                 "WHERE ud.workplace = ? ORDER BY ua.Date DESC";
+       }
+
+       try (Connection con = ConnectionProvider.getCon();
+            PreparedStatement pst = con.prepareStatement(sql)) {
+           if (!selectedWorkplace.equals("All Workplaces")) {
+               pst.setString(1, selectedWorkplace);
+           }
+
+           ResultSet rs = pst.executeQuery();
+           SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
+           SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a");
+
+           while (rs.next()) {
+               String lrn = rs.getString("LRN");
+               String name = rs.getString("Name");
+               String gender = rs.getString("Gender");
+               String section = rs.getString("Section");
+               String workplace = rs.getString("workplace");
+               Date date = rs.getDate("Date");
+               Timestamp timeIn = rs.getTimestamp("TimeIn");
+               Timestamp timeOut = rs.getTimestamp("TimeOut");
+               String workDuration = rs.getString("workduration");
+
+               String formattedDate = dateFormat.format(date);
+               String formattedTimeIn = (timeIn != null) ? timeFormat.format(timeIn) : "N/A";
+               String formattedTimeOut = (timeOut != null) ? timeFormat.format(timeOut) : "N/A";
+
+               model.addRow(new Object[]{
+                   lrn,
+                   name,
+                   gender != null ? gender : "N/A",
+                   section != null ? section : "N/A",
+                   workplace != null ? workplace : "N/A",
+                   formattedDate,
+                   formattedTimeIn,
+                   formattedTimeOut,
+                   workDuration != null ? workDuration : "N/A"
+               });
+           }
+       } catch (Exception ex) {
+           ex.printStackTrace();
+           JOptionPane.showMessageDialog(this, "Error loading data: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+       }
+       loadDataInTable();
+    }//GEN-LAST:event_comboWorkplaceActionPerformed
+
+    private void btnTodayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTodayActionPerformed
+        Date today = new Date();
+        dateChooserFrom.setDate(today);
+        dateChooserTo.setDate(today);
+    
+    // Reload table with today's data
+    loadDataInTable();
+    
+    JOptionPane.showMessageDialog(this, 
+        "Showing today's attendance records", 
+        "Today Filter Applied", 
+        JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnTodayActionPerformed
+    
+    private void loadWorkplacesIntoComboBox() {
+    java.awt.event.ActionListener[] listeners = comboWorkplace.getActionListeners();
+    for (java.awt.event.ActionListener listener : listeners) {
+        comboWorkplace.removeActionListener(listener);
+    }
+    
+    comboWorkplace.removeAllItems();
+    comboWorkplace.addItem("All Workplaces"); 
+
+    try (Connection con = ConnectionProvider.getCon();
+         Statement st = con.createStatement();
+         ResultSet rs = st.executeQuery("SELECT DISTINCT workplace FROM ImmStudentdetails WHERE workplace IS NOT NULL")) {
+        while (rs.next()) {
+            String workplace = rs.getString("workplace");
+            if (workplace != null && !workplace.trim().isEmpty()) {
+                comboWorkplace.addItem(workplace);
+            }
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    
+    if (comboWorkplace.getItemCount() > 0) { 
+        comboWorkplace.setSelectedIndex(0); 
+    }
+    
+    // ⭐ Re-add the action listeners
+    for (java.awt.event.ActionListener listener : listeners) {
+        comboWorkplace.addActionListener(listener);
+    }
+}
+     
+    private void loadFilteredAttendanceCount() {
+    try (Connection con = ConnectionProvider.getCon()) {
+        StringBuilder sql = new StringBuilder(
+            "SELECT COUNT(*) AS countFiltered " +
+            "FROM ImmStudentdetails AS ud " +
+            "INNER JOIN ImmStudentattendance AS ua ON ud.LRN = ua.LRN "
+        );
+
+        String searchText = txtSearch.getText().trim();
+        Date fromDateFromCal = dateChooserFrom.getDate();
+        Date toDateFromCal = dateChooserTo.getDate();
+        Object selected = comboWorkplace.getSelectedItem();
+
+        LocalDate fromDate = null;
+        if (fromDateFromCal != null) {
+            fromDate = fromDateFromCal.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        }
+
+        LocalDate toDate = null;
+        if (toDateFromCal != null) {
+            toDate = toDateFromCal.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        }
+
+        boolean hasWhere = false;
+
+        if (!searchText.isEmpty()) {
+            sql.append("WHERE (ud.Name LIKE '%").append(searchText)
+               .append("%' OR ud.LRN LIKE '%").append(searchText).append("%') ");
+            hasWhere = true;
+        }
+
+        if (selected != null && !"All Workplaces".equals(selected.toString())) {
+            sql.append(hasWhere ? "AND " : "WHERE ");
+            sql.append("ud.workplace = '").append(selected.toString()).append("' ");
+            hasWhere = true;
+        }
+
+        if (fromDate != null && toDate != null) {
+            sql.append(hasWhere ? "AND " : "WHERE ");
+            sql.append("ua.Date BETWEEN '").append(fromDate).append("' AND '").append(toDate).append("' ");
+        } else if (fromDate != null) {
+            sql.append(hasWhere ? "AND " : "WHERE ");
+            sql.append("ua.Date = '").append(fromDate).append("' ");
+        }
+
+        sql.append("AND ua.TimeIn IS NOT NULL");
+
+        try (Statement st = con.createStatement();
+             ResultSet rs = st.executeQuery(sql.toString())) {
+            if (rs.next()) {
+                int count = rs.getInt("countFiltered");
+                attendanceCount.setText(""+ count);
+            }
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        attendanceCount.setText("Attendance Count: Error");
+    }
+}
+
+
+
+
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -402,7 +647,10 @@ public class ViewAttendance extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable UserTable;
+    private javax.swing.JLabel attendanceCount;
     private javax.swing.JButton btnExistRegis;
+    private javax.swing.JButton btnToday;
+    private javax.swing.JComboBox<String> comboWorkplace;
     private com.toedter.calendar.JDateChooser dateChooserFrom;
     private com.toedter.calendar.JDateChooser dateChooserTo;
     private javax.swing.JButton generatebtn;
@@ -410,11 +658,13 @@ public class ViewAttendance extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel remainingH_lbl;
     private javax.swing.JLabel remainingHours;
     private javax.swing.JButton resetFilter;
     private javax.swing.JLabel totalH_lbl;
+    private javax.swing.JLabel totalH_lbl1;
     private javax.swing.JLabel totalHours;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
@@ -445,6 +695,7 @@ public class ViewAttendance extends javax.swing.JFrame {
         String searchText = txtSearch.getText().trim();
         Date fromDateFromCal = dateChooserFrom.getDate();
         Date toDateFromCal = dateChooserTo.getDate();
+        Object selected = comboWorkplace.getSelectedItem();
 
         LocalDate fromDate = null;
         if (fromDateFromCal != null) {
@@ -459,12 +710,16 @@ public class ViewAttendance extends javax.swing.JFrame {
         boolean hasWhere = false;
 
         if (!searchText.isEmpty()) {
-            sqlQuery.append("WHERE (ud.Name LIKE '%").append(searchText)
-                    .append("%' OR ud.LRN LIKE '%").append(searchText)
-                    .append("%' OR ud.Section LIKE '%").append(searchText)
+            sqlQuery.append("WHERE (ud.Name LIKE '%").append(searchText) 
+                    .append("%' OR ud.LRN LIKE '%").append(searchText) 
+                    .append("%' OR ud.Gender LIKE '%").append(searchText) 
+                    .append("%' OR ud.Section LIKE '%").append(searchText) 
                     .append("%' OR ud.workplace LIKE '%").append(searchText).append("%') ");
             hasWhere = true;
-        }
+        }if (selected != null && !"All Workplaces".equals(selected.toString())) { 
+            sqlQuery.append(hasWhere ? "AND " : "WHERE "); 
+            sqlQuery.append("ud.workplace = '").append(selected.toString()).append("' "); 
+            hasWhere = true; }
 
         if (fromDate != null && toDate != null) {
             if (hasWhere) {
@@ -533,6 +788,7 @@ public class ViewAttendance extends javax.swing.JFrame {
         ex.printStackTrace();
         JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
+    loadFilteredAttendanceCount();
 }
 
     

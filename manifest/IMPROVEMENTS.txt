@@ -1,0 +1,16 @@
+🔒 Security Improvements
+5. Login System
+Add admin authentication:
+- Admin login with username/password
+- Different user roles (Admin, Viewer)
+- Session timeout
+- Password encryption
+
+
+6. Audit Trail
+Log who made changes (added/updated/deleted students)
+Track attendance modifications
+System activity log
+
+
+

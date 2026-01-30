@@ -5,7 +5,18 @@
 package forms;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
+import javax.swing.ActionMap;
 import javax.swing.BorderFactory;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.KeyStroke;
 import utility.BDutility;
 
 /**
@@ -19,10 +30,14 @@ public class Dashboard extends javax.swing.JFrame {
     /**
      * Creates new form Dashboard
      */
+    
+    
     public Dashboard() {
         initComponents();
         BDutility.setImage(this, "images/mainbackG.png", 1366, 768);
         this.getRootPane().setBorder(BorderFactory.createMatteBorder(2,2,2,2, Color.GRAY));
+        
+        setupShortcuts();
     }
 
     /**
@@ -40,10 +55,11 @@ public class Dashboard extends javax.swing.JFrame {
         btnRegisterUser = new javax.swing.JButton();
         btnGenerateQr = new javax.swing.JButton();
         btnViewAttendance = new javax.swing.JButton();
-        tbnViewUser = new javax.swing.JButton();
+        btnViewUser = new javax.swing.JButton();
         btnUpdateUser = new javax.swing.JButton();
         btnDeleteUser = new javax.swing.JButton();
         btnViewQr = new javax.swing.JButton();
+        btnManual = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -97,7 +113,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         btnViewAttendance.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        btnViewAttendance.setText("View Attendacne");
+        btnViewAttendance.setText("View Attendance");
         btnViewAttendance.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 0, 255), 3, true));
         btnViewAttendance.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnViewAttendance.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -107,14 +123,14 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        tbnViewUser.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        tbnViewUser.setText("View User");
-        tbnViewUser.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 0, 255), 3, true));
-        tbnViewUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        tbnViewUser.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        tbnViewUser.addActionListener(new java.awt.event.ActionListener() {
+        btnViewUser.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        btnViewUser.setText("View User");
+        btnViewUser.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 0, 255), 3, true));
+        btnViewUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnViewUser.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnViewUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tbnViewUserActionPerformed(evt);
+                btnViewUserActionPerformed(evt);
             }
         });
 
@@ -151,43 +167,61 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        btnManual.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        btnManual.setText("Manual");
+        btnManual.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 0, 255), 3, true));
+        btnManual.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnManual.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnManual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManualActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnMarkAttendance, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                    .addComponent(btnGenerateQr, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                    .addComponent(btnViewAttendance, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                    .addComponent(tbnViewUser, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                    .addComponent(btnUpdateUser, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                    .addComponent(btnDeleteUser, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                    .addComponent(btnViewQr, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                    .addComponent(btnRegisterUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(13, 13, 13))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnMarkAttendance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnGenerateQr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnViewAttendance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnViewUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnUpdateUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnDeleteUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnViewQr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnRegisterUser, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(btnManual, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(107, 107, 107)
+                .addGap(99, 99, 99)
                 .addComponent(btnRegisterUser, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnGenerateQr, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnMarkAttendance, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnViewAttendance, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnGenerateQr, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnViewQr, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tbnViewUser, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnUpdateUser, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDeleteUser, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                .addGap(110, 110, 110))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnViewUser, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnViewQr, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnManual, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -197,7 +231,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1109, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1118, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -216,44 +250,149 @@ public class Dashboard extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private void resetButtonColors() { 
+        btnMarkAttendance.setBackground(Color.WHITE); 
+        btnRegisterUser.setBackground(Color.WHITE);
+        btnGenerateQr.setBackground(Color.WHITE);
+        btnViewAttendance.setBackground(Color.WHITE); 
+        btnViewUser.setBackground(Color.WHITE); 
+        btnUpdateUser.setBackground(Color.WHITE); 
+        btnDeleteUser.setBackground(Color.WHITE);
+        btnViewQr.setBackground(Color.WHITE); }
+    
+    
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnMarkAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarkAttendanceActionPerformed
+        resetButtonColors();
+        btnMarkAttendance.setBackground(Color.GREEN);
         new Mark_Attendance().setVisible(true);
     }//GEN-LAST:event_btnMarkAttendanceActionPerformed
 
     private void btnRegisterUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterUserActionPerformed
-         new UserRegistration().setVisible(true);
+        resetButtonColors();
+        btnRegisterUser.setBackground(Color.GREEN);
+        new UserRegistration().setVisible(true);
         
     }//GEN-LAST:event_btnRegisterUserActionPerformed
 
     private void btnGenerateQrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateQrActionPerformed
+        resetButtonColors();
+        btnGenerateQr.setBackground(Color.GREEN);
         new GenerateQr().setVisible(true);
     }//GEN-LAST:event_btnGenerateQrActionPerformed
 
     private void btnViewAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAttendanceActionPerformed
+        resetButtonColors();
+        btnViewAttendance.setBackground(Color.GREEN);
         new ViewAttendance().setVisible(true);
     }//GEN-LAST:event_btnViewAttendanceActionPerformed
 
-    private void tbnViewUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbnViewUserActionPerformed
+    private void btnViewUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewUserActionPerformed
+        resetButtonColors();
+        btnViewUser.setBackground(Color.GREEN);
         new ViewUser().setVisible(true);
-    }//GEN-LAST:event_tbnViewUserActionPerformed
+    }//GEN-LAST:event_btnViewUserActionPerformed
 
     private void btnUpdateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateUserActionPerformed
+        resetButtonColors();
+        btnUpdateUser.setBackground(Color.GREEN);
         new UpdateUser().setVisible(true);
     }//GEN-LAST:event_btnUpdateUserActionPerformed
 
     private void btnDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteUserActionPerformed
+        resetButtonColors();
+        btnDeleteUser.setBackground(Color.GREEN);
         new DeleteUser().setVisible(true);
     }//GEN-LAST:event_btnDeleteUserActionPerformed
 
     private void btnViewQrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewQrActionPerformed
+        resetButtonColors();
+        btnViewQr.setBackground(Color.GREEN);
         new ViewQrs().setVisible(true);
     }//GEN-LAST:event_btnViewQrActionPerformed
 
+    private void btnManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManualActionPerformed
+        JTextArea manualArea = new JTextArea(); 
+        manualArea.setText( "🔁 SYSTEM WORKFLOW\n\n" + 
+                "1️⃣ Register User\n" + 
+                "Fill in required fields: LRN, Full Name, Gender, Section, Contact Number, Adviser, Work Place.\n" + 
+                "Upload a profile image. Click Register to save the user.\n\n" + 
+                "2️⃣ Generate QR Code\n" + "Go to the Generate QR module. Select the user, review info, click Generate QR.\n" + 
+                "Save the QR code.\n\n" + "3️⃣ Mark Attendance\n" + 
+                "Go to Mark Attendance. Scan or input QR code. The system logs attendance automatically.\n\n" + 
+                "📋 MAIN MENU FUNCTIONS\n" + "• Register User – Add and save user profile.\n" + 
+                "• Generate QR – Create QR codes.\n" + "• Mark Attendance – Scan QR to log attendance.\n" + 
+                "• View Attendance – Filter and export logs.\n" + "• View QRs – Preview generated QR codes.\n" + 
+                "• View User – See registered users.\n" + "• Update User – Modify user details.\n" + 
+                "• Delete User – Permanently remove a user.\n\n" + 
+                
+                "✅ DO’S\n" + 
+                "• Double-check user info before generating QR codes.\n" + 
+                "• Use Update User to correct mistakes.\n" + 
+                "• Mark attendance daily and verify logs.\n" + 
+                "• Save QR codes securely.\n" + 
+                "• Use View Attendance to monitor patterns.\n\n" + 
+                "❌ DON’TS\n" + 
+                "• Don’t falsify attendance records.\n" + 
+                "• Don’t delete users without confirming.\n" + 
+                "• Don’t generate QR codes with incomplete info.\n" + 
+                "• Don’t mark attendance manually unless necessary.\n" + 
+                "• Don’t share QR codes publicly.\n" + 
+                "• Don’t skip updating user details when changes occur." ); 
+        
+        manualArea.setEditable(false); 
+        manualArea.setLineWrap(true); 
+        manualArea.setWrapStyleWord(true); 
+        manualArea.setFont(new Font("Segoe UI", Font.PLAIN, 14)); 
+        
+        JScrollPane scrollPane = new JScrollPane(manualArea); 
+        scrollPane.setPreferredSize(new Dimension(700, 400)); 
+        
+        JOptionPane.showMessageDialog(this, scrollPane, "📘 Help Manual", JOptionPane.INFORMATION_MESSAGE);
+        
+    }//GEN-LAST:event_btnManualActionPerformed
+    
+    private void setupShortcuts() { 
+        InputMap inputMap = this.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW); 
+        ActionMap actionMap = this.getRootPane().getActionMap(); 
+        
+        inputMap.put(KeyStroke.getKeyStroke("F3"), "markAttendance"); 
+        actionMap.put("markAttendance", new AbstractAction() { 
+            @Override
+            public void actionPerformed(ActionEvent e) { btnMarkAttendance.doClick(); } 
+        });
+        
+        inputMap.put(KeyStroke.getKeyStroke("F4"), "viewAttendance"); 
+        actionMap.put("viewAttendance", new AbstractAction() { 
+            @Override
+            public void actionPerformed(ActionEvent e) { btnViewAttendance.doClick(); } 
+        }); 
+        
+        inputMap.put(KeyStroke.getKeyStroke("F2"), "generateQR"); 
+        actionMap.put("generateQR", new AbstractAction() { 
+            @Override
+            public void actionPerformed(ActionEvent e) { btnGenerateQr.doClick(); } 
+        }); 
+        
+        inputMap.put(KeyStroke.getKeyStroke("F1"), "Register_User"); 
+        actionMap.put("Register_User", new AbstractAction() { 
+            @Override
+            public void actionPerformed(ActionEvent e) { btnRegisterUser.doClick(); } 
+        }); 
+        
+        inputMap.put(KeyStroke.getKeyStroke("ESCAPE"), "closeWindow"); 
+        actionMap.put("closeWindow", new AbstractAction() { 
+            @Override
+            public void actionPerformed(ActionEvent e) { dispose(); } 
+        }); 
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -282,13 +421,14 @@ public class Dashboard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDeleteUser;
     private javax.swing.JButton btnGenerateQr;
+    private javax.swing.JButton btnManual;
     private javax.swing.JButton btnMarkAttendance;
     private javax.swing.JButton btnRegisterUser;
     private javax.swing.JButton btnUpdateUser;
     private javax.swing.JButton btnViewAttendance;
     private javax.swing.JButton btnViewQr;
+    private javax.swing.JButton btnViewUser;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JButton tbnViewUser;
     // End of variables declaration//GEN-END:variables
 }

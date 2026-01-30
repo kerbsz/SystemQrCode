@@ -86,6 +86,11 @@ public class ViewUser extends javax.swing.JFrame {
         jLabel11.setText("Search:");
         jLabel11.setMaximumSize(new java.awt.Dimension(25, 25));
 
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchActionPerformed(evt);
+            }
+        });
         txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtSearchKeyReleased(evt);
@@ -241,27 +246,44 @@ public class ViewUser extends javax.swing.JFrame {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_txtSearchKeyReleased
-
+    
+    private boolean imageWarningShown = false;
     private void UserTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UserTableMouseClicked
-        int index =  UserTable.getSelectedRow();
-        TableModel model = UserTable.getModel();
-        String name = Objects.isNull(model.getValueAt(index, 6))?null : model.getValueAt(index, 7).toString();
-        if (!Objects.isNull(name)){
-            String imagePath = BDutility.getPath("images/" + File.separator + name);
-            File imageFile = new File(imagePath); 
-            if(imageFile.exists()) {
-               ImageIcon icon =  new ImageIcon(imagePath);
-               Image image = icon.getImage().getScaledInstance(315, 315, Image.SCALE_SMOOTH);
-               ImageIcon resizedIcon = new ImageIcon(image);
-               lblImage.setIcon(resizedIcon);
-            } else{
-            lblImage.setIcon(null);
-            JOptionPane.showMessageDialog(null, "Image not found. " , "Image not found", JOptionPane.WARNING_MESSAGE);
-            }
-        }else{
-            lblImage.setIcon(null);
+        int index = UserTable.getSelectedRow();
+        if (index == -1) {
+        return;
         }
+    TableModel model = UserTable.getModel();
+    
+    //  image name from column 7
+    Object imageNameObj = model.getValueAt(index, 7);
+    String imageName = (imageNameObj != null) ? imageNameObj.toString() : null;
+    
+    if (imageName != null && !imageName.isEmpty()) {
+        String imagePath = BDutility.getPath("images" + File.separator + imageName);
+        File imageFile = new File(imagePath);
+        
+        if (imageFile.exists()) {
+            ImageIcon icon = new ImageIcon(imagePath);
+            Image image = icon.getImage().getScaledInstance(315, 315, Image.SCALE_SMOOTH);
+            ImageIcon resizedIcon = new ImageIcon(image);
+            lblImage.setIcon(resizedIcon);
+        } else {
+            lblImage.setIcon(null);
+            if (!imageWarningShown) {
+                JOptionPane.showMessageDialog(null, "Image not found.", "Image not found", JOptionPane.WARNING_MESSAGE);
+                imageWarningShown = true;
+            }
+        }
+    } else {
+        lblImage.setIcon(null);
+    }
+
     }//GEN-LAST:event_UserTableMouseClicked
+
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchActionPerformed
     
     private void fetchUser(String searchText) throws Exception{
         DefaultTableModel model = (DefaultTableModel) UserTable.getModel();
@@ -273,7 +295,14 @@ public class ViewUser extends javax.swing.JFrame {
             if(Objects.isNull(searchText)){
                 query = "SELECT * FROM immstudentdetails";
             }else{
-                query = "SELECT * FROM immstudentdetails WHERE Name LIKE'%" + searchText+ "%' OR LRN LIKE '%" + searchText+ "%'";
+                query = "SELECT * FROM immstudentdetails WHERE " 
+                        + "LRN LIKE '%" + searchText + "%' OR " 
+                        + "Name LIKE '%" + searchText + "%' OR " 
+                        + "Gender LIKE '%" + searchText + "%' OR " 
+                        + "Section LIKE '%" + searchText + "%' OR "
+                        + "Contact LIKE '%" + searchText + "%' OR " 
+                        + "Adviser LIKE '%" + searchText + "%' OR " 
+                        + "Workplace LIKE '%" + searchText + "%'";
             }
             
             ResultSet rs = st.executeQuery(query);

@@ -7,6 +7,10 @@ package forms;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import dao.ConnectionProvider;
+
+import jakarta.mail.*; 
+import jakarta.mail.internet.*; 
+import jakarta.activation.*;
 import java.sql.*;
 import java.awt.Color;
 import java.awt.Font;
@@ -20,6 +24,7 @@ import java.awt.event.KeyEvent;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.net.PasswordAuthentication;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
@@ -39,6 +44,7 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 import utility.BDutility;
 import java.sql.PreparedStatement;
+import java.util.Properties;
 
 
 /**
@@ -56,6 +62,9 @@ public class Mark_Attendance extends javax.swing.JFrame {
     /**
      * Creates new form Mark_Attendance
      */
+    
+    private static final String DEFAULT_SUPERVISOR_EMAIL = "sexon.kerby.linquico@gmail.com";
+
     public Mark_Attendance() {
         initComponents();
         BDutility.setImage(this, "images/registrationBG.png", 930, 480);
@@ -375,6 +384,42 @@ public class Mark_Attendance extends javax.swing.JFrame {
         lblName.setText("");
         lblImage.setIcon(null);
     }
+    
+    private void sendEmail(String recipient, String subject, String body) {
+    final String username = "linxonkerby@gmail.com"; // your email
+    final String password = "pwopjmtyyferbpcb";     // app password (not your main password!)
+
+    Properties props = new Properties();
+    props.put("mail.smtp.auth", "true");
+    props.put("mail.smtp.starttls.enable", "true");
+    props.put("mail.smtp.host", "smtp.gmail.com");
+    props.put("mail.smtp.port", "587");
+
+    Session session = Session.getInstance(props,
+    new jakarta.mail.Authenticator() {
+        protected jakarta.mail.PasswordAuthentication getPasswordAuthentication() {
+            return new jakarta.mail.PasswordAuthentication(username, password);
+        }
+    });
+
+
+    try {
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(username));
+        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient));
+        message.setSubject(subject);
+        message.setText(body);
+
+        Transport.send(message);
+        System.out.println("Email sent successfully!");
+
+    } catch (MessagingException e) {
+        e.printStackTrace();
+    }
+}
+
+    
+    
 
     private BufferedImage createCircularImage(BufferedImage imagee) {
         int diameter = 285;
@@ -498,8 +543,17 @@ public class Mark_Attendance extends javax.swing.JFrame {
             preparedStatement.executeUpdate();
             popUpHeader = "TimeOut";
             popUpMessage = "Time out at " + currentDateTime.format(dateTimeFormatter) + "\nWork Duration " + hours + "Hours and " + minutes + "Minutes";
-            
+     
             color = Color.RED;
+            
+            try {
+                sendEmail(DEFAULT_SUPERVISOR_EMAIL, "Time Out Confirmation",
+                        resultMap.get("Name") + " clocked out at " + currentDateTime.format(dateTimeFormatter) +
+                             "\nWork Duration: " + hours + " Hours and " + minutes + " Minutes");
+            } catch (Exception e) {
+                System.err.println("Email notification failed, but attendance recorded successfully");
+            }  
+            
         } else {
             if (currentTime.isBefore(workStartTime) || currentTime.isAfter(workEndTime)) {
                 String startTimeFormatted = workStartTime.format(DateTimeFormatter.ofPattern("h a"));
@@ -532,6 +586,13 @@ public class Mark_Attendance extends javax.swing.JFrame {
             popUpHeader="TimeIn";
             popUpMessage = "Time in at " + currentDateTime.format(dateTimeFormatter);
             color = Color.GREEN;
+            
+            try {
+                sendEmail(DEFAULT_SUPERVISOR_EMAIL, "Time In Confirmation",
+                        resultMap.get("Name") + " clocked in at " + currentDateTime.format(dateTimeFormatter));
+            } catch (Exception e) {
+                System.err.println("Email notification failed, but attendance recorded successfully");
+            }
         }
         
         lblTimeInTimeOut.setHorizontalAlignment(JLabel.CENTER);
@@ -541,6 +602,8 @@ public class Mark_Attendance extends javax.swing.JFrame {
         lblTimeInTimeOut.setOpaque(true);
         showPopUpForCertainDuration(popUpMessage, popUpHeader, JOptionPane.INFORMATION_MESSAGE);
         return true;
+        
+        
     }
 
     @Override
