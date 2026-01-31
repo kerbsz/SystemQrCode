@@ -63,8 +63,15 @@ public class Mark_Attendance extends javax.swing.JFrame {
      * Creates new form Mark_Attendance
      */
     
-    private static final String DEFAULT_SUPERVISOR_EMAIL = "sexon.kerby.linquico@gmail.com";
-
+    private static final String ADMIN_EMAIL = "kerbysexon0827@gmail.com";
+    private static final String JAVA_TEACHER_EMAIL = "sexon.kerby.linquico@gmail.com";
+    private static final String ORACLE_TEACHER_EMAIL = "kerbszxc@gmail.com";
+    
+    private static final Map<String, String> SECTION_TEACHER_MAP = new HashMap<String, String>() {{
+        put("Java", JAVA_TEACHER_EMAIL);
+        put("Oracle", ORACLE_TEACHER_EMAIL);
+    }};
+    
     public Mark_Attendance() {
         initComponents();
         BDutility.setImage(this, "images/registrationBG.png", 930, 480);
@@ -385,38 +392,71 @@ public class Mark_Attendance extends javax.swing.JFrame {
         lblImage.setIcon(null);
     }
     
-    private void sendEmail(String recipient, String subject, String body) {
-    final String username = "linxonkerby@gmail.com"; // your email
-    final String password = "pwopjmtyyferbpcb";     // app password (not your main password!)
-
-    Properties props = new Properties();
-    props.put("mail.smtp.auth", "true");
-    props.put("mail.smtp.starttls.enable", "true");
-    props.put("mail.smtp.host", "smtp.gmail.com");
-    props.put("mail.smtp.port", "587");
-
-    Session session = Session.getInstance(props,
-    new jakarta.mail.Authenticator() {
-        protected jakarta.mail.PasswordAuthentication getPasswordAuthentication() {
-            return new jakarta.mail.PasswordAuthentication(username, password);
+    private String[] getEmailRecipients(String section) {
+        String teacherEmail = null;
+        
+        // Case-insensitive search for teacher email
+        if (section != null) {
+            for (Map.Entry<String, String> entry : SECTION_TEACHER_MAP.entrySet()) {
+                if (entry.getKey().equalsIgnoreCase(section)) {
+                    teacherEmail = entry.getValue();
+                    break;
+                }
+            }
         }
-    });
-
-
-    try {
-        Message message = new MimeMessage(session);
-        message.setFrom(new InternetAddress(username));
-        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient));
-        message.setSubject(subject);
-        message.setText(body);
-
-        Transport.send(message);
-        System.out.println("Email sent successfully!");
-
-    } catch (MessagingException e) {
-        e.printStackTrace();
+        
+        if (teacherEmail != null && !teacherEmail.trim().isEmpty()) {
+            // Send to both teacher and admin
+            return new String[]{teacherEmail, ADMIN_EMAIL};
+        } else {
+            // If no teacher mapping found, send only to admin
+            System.out.println("Warning: No teacher email configured for section: " + section);
+            return new String[]{ADMIN_EMAIL};
+        }
     }
-}
+    
+    /**
+     * Send email to multiple recipients
+     */
+    private void sendEmail(String[] recipients, String subject, String body) {
+        final String username = "linxonkerby@gmail.com"; 
+        final String password = "pwopjmtyyferbpcb";    
+
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+
+        Session session = Session.getInstance(props,
+        new jakarta.mail.Authenticator() {
+            protected jakarta.mail.PasswordAuthentication getPasswordAuthentication() {
+                return new jakarta.mail.PasswordAuthentication(username, password);
+            }
+        });
+
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(username));
+            
+            // Create array of InternetAddress for multiple recipients
+            InternetAddress[] addressTo = new InternetAddress[recipients.length];
+            for (int i = 0; i < recipients.length; i++) {
+                addressTo[i] = new InternetAddress(recipients[i]);
+            }
+            message.setRecipients(Message.RecipientType.TO, addressTo);
+            
+            message.setSubject(subject);
+            message.setText(body);
+
+            Transport.send(message);
+            System.out.println("Email sent successfully to " + recipients.length + " recipients!");
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+            System.err.println("Failed to send email notification");
+        }
+    }
 
     
     
@@ -466,7 +506,7 @@ public class Mark_Attendance extends javax.swing.JFrame {
             }
             case FRIDAY -> {
                 workStartTime = LocalTime.of(6, 0);
-                workEndTime = LocalTime.of(18, 0);
+                workEndTime = LocalTime.of(19, 0);
                 timeInGraceStart = LocalTime.of(6, 0);
                 timeInGraceEnd = LocalTime.of(9, 0);
             }
@@ -547,9 +587,13 @@ public class Mark_Attendance extends javax.swing.JFrame {
             color = Color.RED;
             
             try {
-                sendEmail(DEFAULT_SUPERVISOR_EMAIL, "Time Out Confirmation",
-                        resultMap.get("Name") + " clocked out at " + currentDateTime.format(dateTimeFormatter) +
-                             "\nWork Duration: " + hours + " Hours and " + minutes + " Minutes");
+                String[] recipients = getEmailRecipients(resultMap.get("Section"));
+                sendEmail(recipients, "Time Out Confirmation",
+                        "Student: " + resultMap.get("Name") + 
+                        "\nSection: " + resultMap.get("Section") +
+                        "\nLRN: " + resultMap.get("LRN") +
+                        "\nClocked out at: " + currentDateTime.format(dateTimeFormatter) +
+                        "\nWork Duration: " + hours + " Hours and " + minutes + " Minutes");
             } catch (Exception e) {
                 System.err.println("Email notification failed, but attendance recorded successfully");
             }  
@@ -588,8 +632,12 @@ public class Mark_Attendance extends javax.swing.JFrame {
             color = Color.GREEN;
             
             try {
-                sendEmail(DEFAULT_SUPERVISOR_EMAIL, "Time In Confirmation",
-                        resultMap.get("Name") + " clocked in at " + currentDateTime.format(dateTimeFormatter));
+                String[] recipients = getEmailRecipients(resultMap.get("Section"));
+                sendEmail(recipients, "Time In Confirmation",
+                        "Student: " + resultMap.get("Name") + 
+                        "\nSection: " + resultMap.get("Section") +
+                        "\nLRN: " + resultMap.get("LRN") +
+                        "\nClocked in at: " + currentDateTime.format(dateTimeFormatter));
             } catch (Exception e) {
                 System.err.println("Email notification failed, but attendance recorded successfully");
             }

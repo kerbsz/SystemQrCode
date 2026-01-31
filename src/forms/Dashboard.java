@@ -251,7 +251,7 @@ public class Dashboard extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
-    private void resetButtonColors() { 
+    void resetButtonColors() { 
         btnMarkAttendance.setBackground(Color.WHITE); 
         btnRegisterUser.setBackground(Color.WHITE);
         btnGenerateQr.setBackground(Color.WHITE);
@@ -270,56 +270,123 @@ public class Dashboard extends javax.swing.JFrame {
     private void btnMarkAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarkAttendanceActionPerformed
         resetButtonColors();
         btnMarkAttendance.setBackground(Color.GREEN);
-        new Mark_Attendance().setVisible(true);
+        
+        Mark_Attendance attFrame = new Mark_Attendance();
+        attFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+        @Override 
+            public void windowClosed(java.awt.event.WindowEvent e) { 
+                btnMarkAttendance.setBackground(Color.WHITE);
+            } 
+        });
+        attFrame.setVisible(true);
     }//GEN-LAST:event_btnMarkAttendanceActionPerformed
 
     private void btnRegisterUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterUserActionPerformed
         resetButtonColors();
         btnRegisterUser.setBackground(Color.GREEN);
-        new UserRegistration().setVisible(true);
-        
+ 
+        UserRegistration regFrame = new UserRegistration();
+        regFrame.addWindowListener(new java.awt.event.WindowAdapter() { 
+            @Override 
+            public void windowClosed(java.awt.event.WindowEvent e) { 
+            btnRegisterUser.setBackground(Color.WHITE); 
+        } 
+        });
+        regFrame.setVisible(true);
     }//GEN-LAST:event_btnRegisterUserActionPerformed
 
     private void btnGenerateQrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateQrActionPerformed
         resetButtonColors();
         btnGenerateQr.setBackground(Color.GREEN);
-        new GenerateQr().setVisible(true);
+        
+        GenerateQr qrFrame = new GenerateQr();
+        qrFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+        @Override 
+        public void windowClosed(java.awt.event.WindowEvent e) {
+            btnGenerateQr.setBackground(Color.WHITE);
+        }
+        });
+        qrFrame.setVisible(true);
     }//GEN-LAST:event_btnGenerateQrActionPerformed
 
     private void btnViewAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAttendanceActionPerformed
         resetButtonColors();
         btnViewAttendance.setBackground(Color.GREEN);
-        new ViewAttendance().setVisible(true);
+        
+        ViewAttendance viewAttFrame = new ViewAttendance();
+        viewAttFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent e) { 
+                btnViewAttendance.setBackground(Color.WHITE);
+            }
+        });
+        viewAttFrame.setVisible(true);
     }//GEN-LAST:event_btnViewAttendanceActionPerformed
 
+    
+    
     private void btnViewUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewUserActionPerformed
         resetButtonColors();
         btnViewUser.setBackground(Color.GREEN);
-        new ViewUser().setVisible(true);
+        
+        ViewUser viewUserFrame = new ViewUser();
+        viewUserFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent e) {
+                btnViewUser.setBackground(Color.WHITE);
+            }
+        });
+        viewUserFrame.setVisible(true);
     }//GEN-LAST:event_btnViewUserActionPerformed
 
     private void btnUpdateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateUserActionPerformed
         resetButtonColors();
         btnUpdateUser.setBackground(Color.GREEN);
         new UpdateUser().setVisible(true);
+        
+        UpdateUser updateFrame = new UpdateUser();
+        updateFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override 
+            public void windowClosed(java.awt.event.WindowEvent e) {
+                btnUpdateUser.setBackground(Color.WHITE);
+            }
+        });
+        updateFrame.setVisible(true);
     }//GEN-LAST:event_btnUpdateUserActionPerformed
 
     private void btnDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteUserActionPerformed
         resetButtonColors();
         btnDeleteUser.setBackground(Color.GREEN);
-        new DeleteUser().setVisible(true);
+        DeleteUser delFrame = new DeleteUser();
+        delFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override 
+            public void windowClosed(java.awt.event.WindowEvent e) { 
+                btnDeleteUser.setBackground(Color.WHITE);
+            } 
+        });
+        delFrame.setVisible(true);
     }//GEN-LAST:event_btnDeleteUserActionPerformed
 
     private void btnViewQrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewQrActionPerformed
         resetButtonColors();
         btnViewQr.setBackground(Color.GREEN);
-        new ViewQrs().setVisible(true);
+        
+        ViewQrs viewQrFrame = new ViewQrs();
+        viewQrFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent e) { 
+                btnViewQr.setBackground(Color.WHITE); 
+            }  
+        });
+        viewQrFrame.setVisible(true);
     }//GEN-LAST:event_btnViewQrActionPerformed
 
+    
+    
     private void btnManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManualActionPerformed
         JTextArea manualArea = new JTextArea(); 
-        manualArea.setText( "🔁 SYSTEM WORKFLOW\n\n" + 
-                "1️⃣ Register User\n" + 
+        manualArea.setText( "# SYSTEM WORKFLOW\n\n" + 
+                "1. Register User\n" + 
                 "Fill in required fields: LRN, Full Name, Gender, Section, Contact Number, Adviser, Work Place.\n" + 
                 "Upload a profile image. Click Register to save the user.\n\n" + 
                 "2️⃣ Generate QR Code\n" + "Go to the Generate QR module. Select the user, review info, click Generate QR.\n" + 

@@ -344,6 +344,7 @@ public class UserRegistration extends javax.swing.JFrame {
 
     private void btnExistRegisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExistRegisActionPerformed
            this.dispose();
+           
     }//GEN-LAST:event_btnExistRegisActionPerformed
     
     BufferedImage originalImage =  null;

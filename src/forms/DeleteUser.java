@@ -20,7 +20,7 @@ import java.sql.PreparedStatement;
 
 
 /**
- *
+ *s
  * @author Sexon
  */
 public class DeleteUser extends javax.swing.JFrame {
@@ -169,33 +169,65 @@ public class DeleteUser extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSearchKeyReleased
 
     private void userTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTableMouseClicked
-        try{
-            int dialogResult = JOptionPane.showConfirmDialog(null, "* User details \n* Images \n* Qr codes \n* Attendance\n\n Associated with this user will be deleted. \n Are you sure you want to proceed?", "Confirmation", JOptionPane.YES_NO_OPTION );
-            
-            if(dialogResult == JOptionPane.YES_OPTION){
+            try {
+            int dialogResult = JOptionPane.showConfirmDialog(null,
+                "* User details \n* Images \n* Qr codes \n* Attendance\n\n" +
+                "Associated with this user will be deleted.\nAre you sure you want to proceed?",
+                "Confirmation",
+                JOptionPane.YES_NO_OPTION);
+
+            if (dialogResult == JOptionPane.YES_OPTION) {
                 int index = userTable.getSelectedRow();
                 TableModel model = userTable.getModel();
-                String name = model.getValueAt(index, 1).toString();
-                String imagePath = BDutility.getPath("/images" + File.separator + name + ".jpg");
-                deleteFile(imagePath);
-                imagePath = BDutility.getPath("/qrCodes" + File.separator + name + ".jpg");
-                deleteFile(imagePath);
-                
-                Connection connection = ConnectionProvider.getCon();
-                String attendanceDeleteQuery = "DELETE ImmStudentattendance, ImmStudentdetails From ImmStudentdetails LEFT JOIN ImmStudentattendance ON ImmStudentattendance.LRN=ImmStudentdetails.LRN WHERE ImmStudentdetails.Name=?";
-                
-                PreparedStatement preparedStatement = connection.prepareStatement(attendanceDeleteQuery);
-                preparedStatement.setString(1, name);
-                preparedStatement.executeUpdate();
-                fetchUser(null);
-                JOptionPane.showMessageDialog(null,"User Deleted Successfully.", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
-                
-            }else{
-                JOptionPane.showMessageDialog(null,"Deletion Canceled", "Confirmaion", JOptionPane.INFORMATION_MESSAGE);
+
+                String lrn = model.getValueAt(index, 0).toString();   // ✅ LRN column (first column)
+                String name = model.getValueAt(index, 1).toString();  // Name column
+
+                // Ask user to type the LRN for confirmation
+                String input = JOptionPane.showInputDialog(null,
+                    "To confirm deletion, please type the user's LRN:");
+
+                if (input != null && input.trim().equals(lrn)) {
+                    // ✅ Proceed with deletion only if LRN matches
+                    String imagePath = BDutility.getPath("/images" + File.separator + name + ".jpg");
+                    deleteFile(imagePath);
+                    imagePath = BDutility.getPath("/qrCodes" + File.separator + name + ".jpg");
+                    deleteFile(imagePath);
+
+                    Connection connection = ConnectionProvider.getCon();
+                    String attendanceDeleteQuery =
+                        "DELETE ImmStudentattendance, ImmStudentdetails " +
+                        "FROM ImmStudentdetails " +
+                        "LEFT JOIN ImmStudentattendance ON ImmStudentattendance.LRN=ImmStudentdetails.LRN " +
+                        "WHERE ImmStudentdetails.LRN=?";
+
+                    PreparedStatement preparedStatement = connection.prepareStatement(attendanceDeleteQuery);
+                    preparedStatement.setString(1, lrn);
+                    preparedStatement.executeUpdate();
+
+                    fetchUser(null);
+                    JOptionPane.showMessageDialog(null,
+                        "User Deleted Successfully.",
+                        "Confirmation",
+                        JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                        "Incorrect LRN. Deletion cancelled.",
+                        "Security Check Failed",
+                        JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null,
+                    "Deletion Cancelled",
+                    "Confirmation",
+                    JOptionPane.INFORMATION_MESSAGE);
             }
-        
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "Something Went Wrong" , "Error", JOptionPane.ERROR_MESSAGE);
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,
+                "Something Went Wrong",
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_userTableMouseClicked
 
