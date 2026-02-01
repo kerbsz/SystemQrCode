@@ -485,8 +485,16 @@ public class UpdateUser extends javax.swing.JFrame {
             }
             
             preparedStatement.executeUpdate();
-            JOptionPane.showMessageDialog(null,"User Details Updated", "Updated",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "User Details Updated", "Updated", JOptionPane.INFORMATION_MESSAGE);
+
+            // Follow-up warning
+            JOptionPane.showMessageDialog(null, 
+                "Reminder: Please re-save your QR code to reflect the updated user details.", 
+                "QR Code Update Required", 
+                JOptionPane.WARNING_MESSAGE);
+
             clearForm();
+
             
             
             

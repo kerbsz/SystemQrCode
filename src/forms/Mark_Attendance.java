@@ -504,18 +504,18 @@ public class Mark_Attendance extends javax.swing.JFrame {
                 timeInGraceStart = LocalTime.of(6, 0);
                 timeInGraceEnd = LocalTime.of(9, 0);
             }
-            case FRIDAY -> {
+            case FRIDAY, SUNDAY -> {
                 workStartTime = LocalTime.of(6, 0);
                 workEndTime = LocalTime.of(19, 0);
                 timeInGraceStart = LocalTime.of(6, 0);
                 timeInGraceEnd = LocalTime.of(9, 0);
             }
-            case SATURDAY, SUNDAY -> {
+            /*case SATURDAY, SUNDAY -> {
                 popUpMessage = "Attendance is not allowed on weekends.\nPlease try again on a weekday.";
                 popUpHeader = "Weekend - No Work";
                 showPopUpForCertainDuration(popUpMessage, popUpHeader, JOptionPane.WARNING_MESSAGE);
                 return false;
-            }
+            }*/
             default -> {
                 workStartTime = LocalTime.of(6, 0);
                 workEndTime = LocalTime.of(13, 0);

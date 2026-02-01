@@ -47,7 +47,7 @@ public class ViewAttendance extends javax.swing.JFrame {
      */
     public ViewAttendance() {
         initComponents();
-        BDutility.setImage(this, "images/registrationBG.png",1000, 480);
+        BDutility.setImage(this, "images/registrationBG.png",1005, 480);
         this.getRootPane().setBorder(BorderFactory.createMatteBorder(2,2,2,2, Color.GRAY));
         
         dateChooserFrom.setDateFormatString("yyyy-MM-dd");
@@ -185,7 +185,7 @@ public class ViewAttendance extends javax.swing.JFrame {
         resetFilter.setBackground(new java.awt.Color(255, 0, 0));
         resetFilter.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         resetFilter.setForeground(new java.awt.Color(255, 255, 255));
-        resetFilter.setText("Reset");
+        resetFilter.setText("Show All");
         resetFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resetFilterActionPerformed(evt);
@@ -236,13 +236,14 @@ public class ViewAttendance extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(296, 296, 296)
                         .addComponent(btnExistRegis, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 778, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -265,48 +266,32 @@ public class ViewAttendance extends javax.swing.JFrame {
                                         .addGap(8, 8, 8)
                                         .addComponent(btnToday, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(resetFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(resetFilter)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 759, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(totalH_lbl1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(attendanceCount))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(totalH_lbl)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(totalH_lbl1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(attendanceCount))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(totalH_lbl)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(totalHours))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(remainingH_lbl)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(remainingHours))
-                                    .addComponent(generatebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 8, Short.MAX_VALUE)))
+                                .addComponent(totalHours))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(remainingH_lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(remainingHours))
+                            .addComponent(generatebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnExistRegis, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(totalH_lbl1)
-                            .addComponent(attendanceCount))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(totalH_lbl)
-                            .addComponent(totalHours))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(remainingH_lbl)
-                            .addComponent(remainingHours))
-                        .addGap(150, 150, 150)
-                        .addComponent(generatebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(11, 11, 11)
                         .addComponent(jLabel1)
@@ -327,17 +312,32 @@ public class ViewAttendance extends javax.swing.JFrame {
                                         .addGap(6, 6, 6)
                                         .addComponent(comboWorkplace))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btnToday, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(resetFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(dateChooserFrom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(dateChooserTo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(dateChooserTo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(resetFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btnToday, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(totalH_lbl1)
+                            .addComponent(attendanceCount))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(totalH_lbl)
+                            .addComponent(totalHours))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(remainingH_lbl)
+                            .addComponent(remainingHours))
+                        .addGap(150, 150, 150)
+                        .addComponent(generatebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26))
         );
 
@@ -350,13 +350,22 @@ public class ViewAttendance extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExistRegisActionPerformed
 
     private void resetFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetFilterActionPerformed
-        
         comboWorkplace.setSelectedIndex(0); 
         txtSearch.setText("");
         dateChooserFrom.setDate(null);
         dateChooserTo.setDate(null);
 
-        loadDataInTable();
+        DefaultTableModel model = (DefaultTableModel) UserTable.getModel();
+        model.setRowCount(0); // clear table
+
+        loadDataInTable(); // reload all records
+        loadFilteredAttendanceCount(); // refresh stats
+
+        JOptionPane.showMessageDialog(this,
+            "Showing all attendance records.",
+            "Show All",
+            JOptionPane.INFORMATION_MESSAGE);
+
         
     }//GEN-LAST:event_resetFilterActionPerformed
 
@@ -716,10 +725,13 @@ public class ViewAttendance extends javax.swing.JFrame {
                     .append("%' OR ud.Section LIKE '%").append(searchText) 
                     .append("%' OR ud.workplace LIKE '%").append(searchText).append("%') ");
             hasWhere = true;
-        }if (selected != null && !"All Workplaces".equals(selected.toString())) { 
+        }
+        
+        if (selected != null && !"All Workplaces".equals(selected.toString())) { 
             sqlQuery.append(hasWhere ? "AND " : "WHERE "); 
             sqlQuery.append("ud.workplace = '").append(selected.toString()).append("' "); 
-            hasWhere = true; }
+            hasWhere = true; 
+        }
 
         if (fromDate != null && toDate != null) {
             if (hasWhere) {
@@ -747,7 +759,6 @@ public class ViewAttendance extends javax.swing.JFrame {
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
         SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a");
 
-
         while (rs.next()) {
             String lrn = rs.getString("LRN");
             String name = rs.getString("Name");
@@ -763,7 +774,6 @@ public class ViewAttendance extends javax.swing.JFrame {
             String formattedTimeIn = (timeIn != null) ? timeFormat.format(timeIn) : "N/A";
             String formattedTimeOut = (timeOut != null) ? timeFormat.format(timeOut) : "N/A";
 
-
             Object[] row = {
                 lrn,
                 name,
@@ -778,8 +788,12 @@ public class ViewAttendance extends javax.swing.JFrame {
             model.addRow(row);
         }
 
-         totalHours.setText("Pick a ST");
-         remainingHours.setText("Pick a ST");
+        // ⭐ RESET HOURS DISPLAY WHEN TABLE IS RELOADED
+        totalHours.setText("Pick a St");
+        remainingHours.setText("Pick a St");
+
+        rs.close();
+        st.close();
 
     } catch (SQLException ex) {
         ex.printStackTrace();
@@ -788,6 +802,7 @@ public class ViewAttendance extends javax.swing.JFrame {
         ex.printStackTrace();
         JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
+    
     loadFilteredAttendanceCount();
 }
 
@@ -806,241 +821,300 @@ public class ViewAttendance extends javax.swing.JFrame {
             String duration = rs.getString("workduration");
             if (duration != null && !duration.isEmpty()) {
                 try {
+                    // Extract hours from "XHours and YMinutes" format
                     String[] parts = duration.split("Hours");
                     if (parts.length > 0) {
-                        totalHoursValue += Double.parseDouble(parts[0].trim());
+                        double hours = Double.parseDouble(parts[0].trim());
+                        totalHoursValue += hours;
+                        
+                        // Also add minutes if present
+                        if (parts.length > 1 && parts[1].contains("and")) {
+                            String minutesPart = parts[1].trim();
+                            if (minutesPart.startsWith("and")) {
+                                minutesPart = minutesPart.substring(3).trim(); // Remove "and "
+                                String[] minuteParts = minutesPart.split("Minutes");
+                                if (minuteParts.length > 0) {
+                                    double minutes = Double.parseDouble(minuteParts[0].trim());
+                                    totalHoursValue += (minutes / 60.0); // Convert minutes to hours
+                                }
+                            }
+                        }
                     }
-                } catch (Exception e) {
-                    // Skip invalid formats
+                } catch (NumberFormatException e) {
+                    System.err.println("Error parsing duration: " + duration);
+                    e.printStackTrace();
                 }
             }
         }
-        //////////////////////////////////////////////////////////////////////////////////////////
-        // Update the labels (JLabel components)
+
+        rs.close();
+        ps.close();
+
         totalHours.setText(String.format("%.1f hours", totalHoursValue));
         double remaining = Math.max(0, 160.0 - totalHoursValue);
         remainingHours.setText(String.format("%.1f hours", remaining));
+        
+
+        System.out.println("LRN: " + lrn + " | Total Hours: " + totalHoursValue + " | Remaining: " + remaining);
 
     } catch (SQLException ex) {
         ex.printStackTrace();
         JOptionPane.showMessageDialog(this, "Database Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        
+
+        totalHours.setText("Error");
+        remainingHours.setText("Error");
+    }
     }
     
      private void createExcelReport(String studentLRN, File outputFile) throws Exception {
         Connection con = ConnectionProvider.getCon();
-        
-        String studentQuery = "SELECT * FROM immstudentdetails WHERE LRN = ?";
-        PreparedStatement pstStudent = con.prepareStatement(studentQuery);
-        pstStudent.setString(1, studentLRN);
-        ResultSet rsStudent = pstStudent.executeQuery();
-        
-        if (!rsStudent.next()) {
-            throw new Exception("Student not found");
-        }
-        
-        String name = rsStudent.getString("Name");
-        String gender = rsStudent.getString("Gender");
-        String section = rsStudent.getString("Section");
-        String classAdviser = rsStudent.getString("Adviser");
-        String workplace = rsStudent.getString("workplace");
-        String attendanceQuery = "SELECT Date, TimeIn, TimeOut, workduration " +
-                        "FROM ImmStudentattendance WHERE LRN = ? ORDER BY Date ASC";
-        PreparedStatement pstAttendance = con.prepareStatement(
-            attendanceQuery,
-            ResultSet.TYPE_SCROLL_INSENSITIVE,  // Allows scrolling backward
-            ResultSet.CONCUR_READ_ONLY
-        );
-        pstAttendance.setString(1, studentLRN);
-        ResultSet rsAttendance = pstAttendance.executeQuery();
-        
-        XSSFWorkbook workbook = new XSSFWorkbook();
-        XSSFSheet sheet = workbook.createSheet("Immersion Report");
-        
-        CellStyle titleStyle = workbook.createCellStyle();
-        Font titleFont = workbook.createFont();
-        titleFont.setBold(true);
-        titleFont.setFontHeightInPoints((short) 18);
-        titleStyle.setFont(titleFont);
-        
-        CellStyle headerStyle = workbook.createCellStyle();
-        Font headerFont = workbook.createFont();
-        headerFont.setBold(true);
-        headerFont.setFontHeightInPoints((short) 12);
-        headerStyle.setFont(headerFont);
-        headerStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
-        headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-        
-        CellStyle labelStyle = workbook.createCellStyle();
-        Font labelFont = workbook.createFont();
-        labelFont.setBold(true);
-        labelStyle.setFont(labelFont);
-        
-        int rowNum = 0;
-        
-        XSSFRow titleRow = sheet.createRow(rowNum++);
-        Cell titleCell = titleRow.createCell(0);
-        titleCell.setCellValue("WORK IMMERSION ATTENDANCE REPORT");
-        titleCell.setCellStyle(titleStyle);
-        rowNum++;
-        
-        sheet.createRow(rowNum++).createCell(0).setCellValue("STUDENT INFORMATION");
-        createLabelValueRow(sheet, rowNum++, "LRN:", studentLRN, labelStyle);
-        createLabelValueRow(sheet, rowNum++, "Name:", name, labelStyle);
-        createLabelValueRow(sheet, rowNum++, "Gender:", gender != null ? gender : "N/A", labelStyle);
-        createLabelValueRow(sheet, rowNum++, "Section:", section != null ? section : "N/A", labelStyle);
-        createLabelValueRow(sheet, rowNum++, "Class Adviser:", classAdviser != null ? classAdviser : "N/A", labelStyle);
-        createLabelValueRow(sheet, rowNum++, "Work Place:", workplace != null ? workplace : "N/A", labelStyle);
-        createLabelValueRow(sheet, rowNum++, "Report Generated:", 
-            new SimpleDateFormat("MMM dd, yyyy HH:mm").format(new Date()), labelStyle);
-        rowNum++;
-        
-        Map<String, Double> monthlyHours = new HashMap<>();
-        Map<String, Integer> monthlyDays = new HashMap<>();
-        double totalHours = 0.0;
-        int totalDaysPresent = 0;
-        LocalDate firstDate = null;
-        LocalDate lastDate = null;
-        
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        
-        while (rsAttendance.next()) {
-            totalDaysPresent++;
-            String dateStr = rsAttendance.getString("Date");
-            String workDuration = rsAttendance.getString("workduration");
-            
-            LocalDate date = LocalDate.parse(dateStr, dateFormatter);
-            if (firstDate == null || date.isBefore(firstDate)) firstDate = date;
-            if (lastDate == null || date.isAfter(lastDate)) lastDate = date;
-            
-            if (workDuration != null) {
-                try {
-                    String[] parts = workDuration.split("Hours");
-                    double hours = Double.parseDouble(parts[0].trim());
-                    totalHours += hours;
-                    
-                    String monthKey = date.format(DateTimeFormatter.ofPattern("MMMM yyyy"));
-                    monthlyHours.put(monthKey, monthlyHours.getOrDefault(monthKey, 0.0) + hours);
-                    monthlyDays.put(monthKey, monthlyDays.getOrDefault(monthKey, 0) + 1);
-                } catch (Exception e) {
+    
+            String studentQuery = "SELECT * FROM immstudentdetails WHERE LRN = ?";
+            PreparedStatement pstStudent = con.prepareStatement(studentQuery);
+            pstStudent.setString(1, studentLRN);
+            ResultSet rsStudent = pstStudent.executeQuery();
+
+            if (!rsStudent.next()) {
+                throw new Exception("Student not found");
+            }
+
+            String name = rsStudent.getString("Name");
+            String gender = rsStudent.getString("Gender");
+            String section = rsStudent.getString("Section");
+            String classAdviser = rsStudent.getString("Adviser");
+            String workplace = rsStudent.getString("workplace");
+
+            String attendanceQuery = "SELECT Date, TimeIn, TimeOut, workduration " +
+                            "FROM ImmStudentattendance WHERE LRN = ? ORDER BY Date ASC";
+            PreparedStatement pstAttendance = con.prepareStatement(
+                attendanceQuery,
+                ResultSet.TYPE_SCROLL_INSENSITIVE,
+                ResultSet.CONCUR_READ_ONLY
+            );
+            pstAttendance.setString(1, studentLRN);
+            ResultSet rsAttendance = pstAttendance.executeQuery();
+
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet sheet = workbook.createSheet("Immersion Report");
+
+            CellStyle titleStyle = workbook.createCellStyle();
+            Font titleFont = workbook.createFont();
+            titleFont.setBold(true);
+            titleFont.setFontHeightInPoints((short) 18);
+            titleStyle.setFont(titleFont);
+
+            CellStyle headerStyle = workbook.createCellStyle();
+            Font headerFont = workbook.createFont();
+            headerFont.setBold(true);
+            headerFont.setFontHeightInPoints((short) 12);
+            headerStyle.setFont(headerFont);
+            headerStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+            headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
+            CellStyle labelStyle = workbook.createCellStyle();
+            Font labelFont = workbook.createFont();
+            labelFont.setBold(true);
+            labelStyle.setFont(labelFont);
+
+            int rowNum = 0;
+
+            XSSFRow titleRow = sheet.createRow(rowNum++);
+            Cell titleCell = titleRow.createCell(0);
+            titleCell.setCellValue("WORK IMMERSION ATTENDANCE REPORT");
+            titleCell.setCellStyle(titleStyle);
+            rowNum++;
+
+            sheet.createRow(rowNum++).createCell(0).setCellValue("STUDENT INFORMATION");
+            createLabelValueRow(sheet, rowNum++, "LRN:", studentLRN, labelStyle);
+            createLabelValueRow(sheet, rowNum++, "Name:", name, labelStyle);
+            createLabelValueRow(sheet, rowNum++, "Gender:", gender != null ? gender : "N/A", labelStyle);
+            createLabelValueRow(sheet, rowNum++, "Section:", section != null ? section : "N/A", labelStyle);
+            createLabelValueRow(sheet, rowNum++, "Class Adviser:", classAdviser != null ? classAdviser : "N/A", labelStyle);
+            createLabelValueRow(sheet, rowNum++, "Work Place:", workplace != null ? workplace : "N/A", labelStyle);
+            createLabelValueRow(sheet, rowNum++, "Report Generated:", 
+                new SimpleDateFormat("MMM dd, yyyy HH:mm").format(new Date()), labelStyle);
+            rowNum++;
+
+            Map<String, Double> monthlyHours = new HashMap<>();
+            Map<String, Integer> monthlyDays = new HashMap<>();
+            double totalHours = 0.0;
+            int totalDaysPresent = 0;
+            LocalDate firstDate = null;
+            LocalDate lastDate = null;
+
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+            // ============================================================================
+            // FIXED: Properly calculate hours including minutes
+            // ============================================================================
+            while (rsAttendance.next()) {
+                totalDaysPresent++;
+                String dateStr = rsAttendance.getString("Date");
+                String workDuration = rsAttendance.getString("workduration");
+
+                LocalDate date = LocalDate.parse(dateStr, dateFormatter);
+                if (firstDate == null || date.isBefore(firstDate)) firstDate = date;
+                if (lastDate == null || date.isAfter(lastDate)) lastDate = date;
+
+                if (workDuration != null && !workDuration.isEmpty()) {
+                    try {
+                        double hoursDecimal = 0.0;
+
+                        // Parse "XHours and YMinutes" format
+                        if (workDuration.contains("Hours")) {
+                            String[] hoursPart = workDuration.split("Hours");
+                            if (hoursPart.length > 0) {
+                                hoursDecimal += Double.parseDouble(hoursPart[0].trim());
+                            }
+
+                            // Parse minutes if present
+                            if (hoursPart.length > 1 && hoursPart[1].contains("and")) {
+                                String minutesPart = hoursPart[1].trim();
+                                if (minutesPart.startsWith("and")) {
+                                    minutesPart = minutesPart.substring(3).trim(); // Remove "and "
+                                    if (minutesPart.contains("Minutes")) {
+                                        String[] minParts = minutesPart.split("Minutes");
+                                        if (minParts.length > 0) {
+                                            double minutes = Double.parseDouble(minParts[0].trim());
+                                            hoursDecimal += (minutes / 60.0); // Convert to hours
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        totalHours += hoursDecimal;
+
+                        String monthKey = date.format(DateTimeFormatter.ofPattern("MMMM yyyy"));
+                        monthlyHours.put(monthKey, monthlyHours.getOrDefault(monthKey, 0.0) + hoursDecimal);
+                        monthlyDays.put(monthKey, monthlyDays.getOrDefault(monthKey, 0) + 1);
+
+                    } catch (NumberFormatException e) {
+                        System.err.println("Error parsing work duration: " + workDuration);
+                        e.printStackTrace();
+                    }
                 }
             }
-        }
-        
-        int totalAbsences = 0;
-        if (firstDate != null && lastDate != null) {
-            totalAbsences = countWeekdays(firstDate, lastDate) - totalDaysPresent;
-        }
-        
-        sheet.createRow(rowNum++).createCell(0).setCellValue("IMMERSION SUMMARY");
-        createLabelValueRow(sheet, rowNum++, "Total Required Hours:", "160 hours", labelStyle);
-        createLabelValueRow(sheet, rowNum++, "Total Hours Completed:", String.format("%.1f hours", totalHours), labelStyle);
-        createLabelValueRow(sheet, rowNum++, "Hours Remaining:", String.format("%.1f hours", Math.max(0, 160.0 - totalHours)), labelStyle);
-        createLabelValueRow(sheet, rowNum++, "Completion Percentage:", String.format("%.1f%%", (totalHours / 160.0) * 100), labelStyle);
-        createLabelValueRow(sheet, rowNum++, "Total Days Present:", String.valueOf(totalDaysPresent), labelStyle);
-        createLabelValueRow(sheet, rowNum++, "Total Absences:", String.valueOf(totalAbsences), labelStyle);
-        
-        if (firstDate != null && lastDate != null) {
-            createLabelValueRow(sheet, rowNum++, "First Immersion Day:", 
-                firstDate.format(DateTimeFormatter.ofPattern("MMM dd, yyyy")), labelStyle);
-            createLabelValueRow(sheet, rowNum++, "Last Immersion Day:", 
-                lastDate.format(DateTimeFormatter.ofPattern("MMM dd, yyyy")), labelStyle);
-            createLabelValueRow(sheet, rowNum++, "Total Duration:", 
-                ChronoUnit.DAYS.between(firstDate, lastDate) + 1 + " days", labelStyle);
-        }
-        rowNum++;
-        
-        if (!monthlyHours.isEmpty()) {
-            sheet.createRow(rowNum++).createCell(0).setCellValue("MONTHLY BREAKDOWN");
-            XSSFRow monthHeaderRow = sheet.createRow(rowNum++);
-            
-            Cell monthCell = monthHeaderRow.createCell(0);
-            monthCell.setCellValue("Month");
-            monthCell.setCellStyle(headerStyle);
-            
-            Cell daysCell = monthHeaderRow.createCell(1);
-            daysCell.setCellValue("Days Present");
-            daysCell.setCellStyle(headerStyle);
-            
-            Cell hoursCell = monthHeaderRow.createCell(2);
-            hoursCell.setCellValue("Hours Completed");
-            hoursCell.setCellStyle(headerStyle);
-            
-            for (Map.Entry<String, Double> entry : monthlyHours.entrySet()) {
-                XSSFRow monthRow = sheet.createRow(rowNum++);
-                monthRow.createCell(0).setCellValue(entry.getKey());
-                monthRow.createCell(1).setCellValue(monthlyDays.getOrDefault(entry.getKey(), 0));
-                monthRow.createCell(2).setCellValue(String.format("%.1f hours", entry.getValue()));
+
+            int totalAbsences = 0;
+            if (firstDate != null && lastDate != null) {
+                totalAbsences = countWeekdays(firstDate, lastDate) - totalDaysPresent;
+            }
+
+            sheet.createRow(rowNum++).createCell(0).setCellValue("IMMERSION SUMMARY");
+            createLabelValueRow(sheet, rowNum++, "Total Required Hours:", "160 hours", labelStyle);
+            createLabelValueRow(sheet, rowNum++, "Total Hours Completed:", String.format("%.1f hours", totalHours), labelStyle);
+            createLabelValueRow(sheet, rowNum++, "Hours Remaining:", String.format("%.1f hours", Math.max(0, 160.0 - totalHours)), labelStyle);
+            createLabelValueRow(sheet, rowNum++, "Completion Percentage:", String.format("%.1f%%", (totalHours / 160.0) * 100), labelStyle);
+            createLabelValueRow(sheet, rowNum++, "Total Days Present:", String.valueOf(totalDaysPresent), labelStyle);
+            createLabelValueRow(sheet, rowNum++, "Total Absences:", String.valueOf(totalAbsences), labelStyle);
+
+            if (firstDate != null && lastDate != null) {
+                createLabelValueRow(sheet, rowNum++, "First Immersion Day:", 
+                    firstDate.format(DateTimeFormatter.ofPattern("MMM dd, yyyy")), labelStyle);
+                createLabelValueRow(sheet, rowNum++, "Last Immersion Day:", 
+                    lastDate.format(DateTimeFormatter.ofPattern("MMM dd, yyyy")), labelStyle);
+                createLabelValueRow(sheet, rowNum++, "Total Duration:", 
+                    ChronoUnit.DAYS.between(firstDate, lastDate) + 1 + " days", labelStyle);
             }
             rowNum++;
-        }
-        
-        sheet.createRow(rowNum++).createCell(0).setCellValue("DETAILED ATTENDANCE RECORDS");
-        XSSFRow headerRow = sheet.createRow(rowNum++);
-        String[] headers = {"Date", "Day", "Time In", "Time Out", "Work Duration", "Status"};
-        for (int i = 0; i < headers.length; i++) {
-            Cell cell = headerRow.createCell(i);
-            cell.setCellValue(headers[i]);
-            cell.setCellStyle(headerStyle);
-        }
-        
-        rsAttendance.beforeFirst();
-        
-        SimpleDateFormat displayFormat = new SimpleDateFormat("MMM dd, yyyy");
-        SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE");
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("h:mm a");
-        
-        while (rsAttendance.next()) {
-            XSSFRow dataRow = sheet.createRow(rowNum++);
-            
-            String dateStr = rsAttendance.getString("Date");
-            String timeIn = rsAttendance.getString("TimeIn");
-            String timeOut = rsAttendance.getString("TimeOut");
-            String workDuration = rsAttendance.getString("workduration");
-            
-            java.sql.Date sqlDate = java.sql.Date.valueOf(dateStr);
-            String formattedDate = displayFormat.format(sqlDate);
-            String dayOfWeek = dayFormat.format(sqlDate);
-            
-            String formattedTimeIn = "";
-            String formattedTimeOut = "";
-            String status = "Present";
-            
-            if (timeIn != null) {
-                LocalDateTime timeInDateTime = LocalDateTime.parse(timeIn, 
-                    DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-                formattedTimeIn = timeInDateTime.format(timeFormatter);
-                
-                if (timeInDateTime.getHour() >= 9) {
-                    status = "Late";
+
+            if (!monthlyHours.isEmpty()) {
+                sheet.createRow(rowNum++).createCell(0).setCellValue("MONTHLY BREAKDOWN");
+                XSSFRow monthHeaderRow = sheet.createRow(rowNum++);
+
+                Cell monthCell = monthHeaderRow.createCell(0);
+                monthCell.setCellValue("Month");
+                monthCell.setCellStyle(headerStyle);
+
+                Cell daysCell = monthHeaderRow.createCell(1);
+                daysCell.setCellValue("Days Present");
+                daysCell.setCellStyle(headerStyle);
+
+                Cell hoursCell = monthHeaderRow.createCell(2);
+                hoursCell.setCellValue("Hours Completed");
+                hoursCell.setCellStyle(headerStyle);
+
+                for (Map.Entry<String, Double> entry : monthlyHours.entrySet()) {
+                    XSSFRow monthRow = sheet.createRow(rowNum++);
+                    monthRow.createCell(0).setCellValue(entry.getKey());
+                    monthRow.createCell(1).setCellValue(monthlyDays.getOrDefault(entry.getKey(), 0));
+                    monthRow.createCell(2).setCellValue(String.format("%.1f hours", entry.getValue()));
                 }
+                rowNum++;
             }
-            
-            if (timeOut != null) {
-                LocalDateTime timeOutDateTime = LocalDateTime.parse(timeOut, 
-                    DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-                formattedTimeOut = timeOutDateTime.format(timeFormatter);
-            } else {
-                formattedTimeOut = "Not recorded";
+
+            sheet.createRow(rowNum++).createCell(0).setCellValue("DETAILED ATTENDANCE RECORDS");
+            XSSFRow headerRow = sheet.createRow(rowNum++);
+            String[] headers = {"Date", "Day", "Time In", "Time Out", "Work Duration", "Status"};
+            for (int i = 0; i < headers.length; i++) {
+                Cell cell = headerRow.createCell(i);
+                cell.setCellValue(headers[i]);
+                cell.setCellStyle(headerStyle);
             }
-            
-            dataRow.createCell(0).setCellValue(formattedDate);
-            dataRow.createCell(1).setCellValue(dayOfWeek);
-            dataRow.createCell(2).setCellValue(formattedTimeIn);
-            dataRow.createCell(3).setCellValue(formattedTimeOut);
-            dataRow.createCell(4).setCellValue(workDuration != null ? workDuration : "Incomplete");
-            dataRow.createCell(5).setCellValue(status);
-        }
-        
-        for (int i = 0; i < 6; i++) {
-            sheet.autoSizeColumn(i);
-        }
-        
-        try (FileOutputStream fileOut = new FileOutputStream(outputFile)) {
-            workbook.write(fileOut);
-        }
-        
-        workbook.close();
+
+            rsAttendance.beforeFirst();
+
+            SimpleDateFormat displayFormat = new SimpleDateFormat("MMM dd, yyyy");
+            SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE");
+            DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("h:mm a");
+
+            while (rsAttendance.next()) {
+                XSSFRow dataRow = sheet.createRow(rowNum++);
+
+                String dateStr = rsAttendance.getString("Date");
+                String timeIn = rsAttendance.getString("TimeIn");
+                String timeOut = rsAttendance.getString("TimeOut");
+                String workDuration = rsAttendance.getString("workduration");
+
+                java.sql.Date sqlDate = java.sql.Date.valueOf(dateStr);
+                String formattedDate = displayFormat.format(sqlDate);
+                String dayOfWeek = dayFormat.format(sqlDate);
+
+                String formattedTimeIn = "";
+                String formattedTimeOut = "";
+                String status = "Present";
+
+                if (timeIn != null) {
+                    LocalDateTime timeInDateTime = LocalDateTime.parse(timeIn, 
+                        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                    formattedTimeIn = timeInDateTime.format(timeFormatter);
+
+                    if (timeInDateTime.getHour() >= 9) {
+                        status = "Late";
+                    }
+                }
+
+                if (timeOut != null) {
+                    LocalDateTime timeOutDateTime = LocalDateTime.parse(timeOut, 
+                        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                    formattedTimeOut = timeOutDateTime.format(timeFormatter);
+                } else {
+                    formattedTimeOut = "Not recorded";
+                }
+
+                dataRow.createCell(0).setCellValue(formattedDate);
+                dataRow.createCell(1).setCellValue(dayOfWeek);
+                dataRow.createCell(2).setCellValue(formattedTimeIn);
+                dataRow.createCell(3).setCellValue(formattedTimeOut);
+                dataRow.createCell(4).setCellValue(workDuration != null ? workDuration : "Incomplete");
+                dataRow.createCell(5).setCellValue(status);
+            }
+
+            for (int i = 0; i < 6; i++) {
+                sheet.autoSizeColumn(i);
+            }
+
+            try (FileOutputStream fileOut = new FileOutputStream(outputFile)) {
+                workbook.write(fileOut);
+            }
+
+            workbook.close();
+            rsAttendance.close();
+            pstAttendance.close();
+            rsStudent.close();
+            pstStudent.close();
     }
     
     private void createLabelValueRow(XSSFSheet sheet, int rowNum, String label, String value, CellStyle labelStyle) {

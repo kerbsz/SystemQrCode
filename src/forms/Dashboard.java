@@ -389,22 +389,22 @@ public class Dashboard extends javax.swing.JFrame {
                 "1. Register User\n" + 
                 "Fill in required fields: LRN, Full Name, Gender, Section, Contact Number, Adviser, Work Place.\n" + 
                 "Upload a profile image. Click Register to save the user.\n\n" + 
-                "2️⃣ Generate QR Code\n" + "Go to the Generate QR module. Select the user, review info, click Generate QR.\n" + 
-                "Save the QR code.\n\n" + "3️⃣ Mark Attendance\n" + 
+                "2️. Generate QR Code\n" + "Go to the Generate QR module. Select the user, review info, click Generate QR.\n" + 
+                "Save the QR code.\n\n" + "3️. Mark Attendance\n" + 
                 "Go to Mark Attendance. Scan or input QR code. The system logs attendance automatically.\n\n" + 
-                "📋 MAIN MENU FUNCTIONS\n" + "• Register User – Add and save user profile.\n" + 
+                "###MAIN MENU FUNCTIONS###\n" + "• Register User – Add and save user profile.\n" + 
                 "• Generate QR – Create QR codes.\n" + "• Mark Attendance – Scan QR to log attendance.\n" + 
                 "• View Attendance – Filter and export logs.\n" + "• View QRs – Preview generated QR codes.\n" + 
                 "• View User – See registered users.\n" + "• Update User – Modify user details.\n" + 
                 "• Delete User – Permanently remove a user.\n\n" + 
                 
-                "✅ DO’S\n" + 
+                "#DO’S:\n" + 
                 "• Double-check user info before generating QR codes.\n" + 
                 "• Use Update User to correct mistakes.\n" + 
                 "• Mark attendance daily and verify logs.\n" + 
                 "• Save QR codes securely.\n" + 
                 "• Use View Attendance to monitor patterns.\n\n" + 
-                "❌ DON’TS\n" + 
+                "#DON’TS:\n" + 
                 "• Don’t falsify attendance records.\n" + 
                 "• Don’t delete users without confirming.\n" + 
                 "• Don’t generate QR codes with incomplete info.\n" + 

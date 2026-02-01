@@ -5,8 +5,14 @@
 package forms;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
+import javax.swing.ActionMap;
 import javax.swing.BorderFactory;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 import utility.BDutility;
 
 
@@ -26,6 +32,7 @@ public class Login extends javax.swing.JFrame {
         BDutility.setImage(this,"images/LoginBG.png",635,506);
         this.getRootPane().setBorder(BorderFactory.createMatteBorder(3,3,3,3,Color.BLUE));
     
+        setupShortcuts();
     }
 
     /**
@@ -150,7 +157,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
-        // TODO add your handling code here:
+        btnLogin.doClick();
     }//GEN-LAST:event_txtPasswordActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
@@ -163,6 +170,30 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
+    private void setupShortcuts() {
+    InputMap inputMap = this.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+    ActionMap actionMap = this.getRootPane().getActionMap();
+
+    // ENTER → trigger Login button
+    inputMap.put(KeyStroke.getKeyStroke("ENTER"), "loginAction");
+    actionMap.put("loginAction", new AbstractAction() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            btnLogin.doClick(); // simulate clicking Login
+        }
+    });
+
+    // ESCAPE → exit application
+    inputMap.put(KeyStroke.getKeyStroke("ESCAPE"), "exitAction");
+    actionMap.put("exitAction", new AbstractAction() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.exit(0);
+        }
+    });
+}
+
+    
     /**
      * @param args the command line arguments
      */
