@@ -162,7 +162,7 @@ public class Login extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         String password = new String(txtPassword.getPassword());
-        if("admin".equalsIgnoreCase(password)){
+        if("SEXON".equalsIgnoreCase(password)){
             this.dispose();
             BDutility.openForm(Dashboard.class.getSimpleName(), new Dashboard());
         }else{
