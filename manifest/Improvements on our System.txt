@@ -1,0 +1,17 @@
+Improvements on our System
+#Shortcut keys 
+	-LogIn enter = loginbtn
+	-LogIn esc = exit
+	-Dashboard F1 = Register Frame
+	-Dashboard F2 = Generate Qr Frame
+	-Dashboard F3 = Mark Attendance Frame
+	-Dashboard F4 = View Attendance Frame
+#Added Features
+	-Manual Guide
+	-Email sent by teacher of 2 section java&oracle
+	-2 way security process of Delete User
+	-Update user guiding that updating info will have impact on QrCode
+	-View Attendance can categories by workplace
+#Dynamic
+	-Dashboard btn changing color when clicked
+	-ViewAttendance and Excel report

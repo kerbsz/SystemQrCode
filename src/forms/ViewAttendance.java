@@ -1081,7 +1081,7 @@ public class ViewAttendance extends javax.swing.JFrame {
                         DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
                     formattedTimeIn = timeInDateTime.format(timeFormatter);
 
-                    if (timeInDateTime.getHour() >= 9) {
+                    if (timeInDateTime.getHour() >= 14) {
                         status = "Late";
                     }
                 }

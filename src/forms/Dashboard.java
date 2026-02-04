@@ -196,7 +196,7 @@ public class Dashboard extends javax.swing.JFrame {
                             .addComponent(btnViewQr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnRegisterUser, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
+                        .addGap(30, 30, 30)
                         .addComponent(btnManual, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
@@ -231,7 +231,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1118, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1124, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -385,43 +385,64 @@ public class Dashboard extends javax.swing.JFrame {
     
     private void btnManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManualActionPerformed
         JTextArea manualArea = new JTextArea(); 
-        manualArea.setText( "# SYSTEM WORKFLOW\n\n" + 
-                "1. Register User\n" + 
-                "Fill in required fields: LRN, Full Name, Gender, Section, Contact Number, Adviser, Work Place.\n" + 
-                "Upload a profile image. Click Register to save the user.\n\n" + 
-                "2️. Generate QR Code\n" + "Go to the Generate QR module. Select the user, review info, click Generate QR.\n" + 
-                "Save the QR code.\n\n" + "3️. Mark Attendance\n" + 
-                "Go to Mark Attendance. Scan or input QR code. The system logs attendance automatically.\n\n" + 
-                "###MAIN MENU FUNCTIONS###\n" + "• Register User – Add and save user profile.\n" + 
-                "• Generate QR – Create QR codes.\n" + "• Mark Attendance – Scan QR to log attendance.\n" + 
-                "• View Attendance – Filter and export logs.\n" + "• View QRs – Preview generated QR codes.\n" + 
-                "• View User – See registered users.\n" + "• Update User – Modify user details.\n" + 
-                "• Delete User – Permanently remove a user.\n\n" + 
-                
-                "#DO’S:\n" + 
-                "• Double-check user info before generating QR codes.\n" + 
-                "• Use Update User to correct mistakes.\n" + 
-                "• Mark attendance daily and verify logs.\n" + 
-                "• Save QR codes securely.\n" + 
-                "• Use View Attendance to monitor patterns.\n\n" + 
-                "#DON’TS:\n" + 
-                "• Don’t falsify attendance records.\n" + 
-                "• Don’t delete users without confirming.\n" + 
-                "• Don’t generate QR codes with incomplete info.\n" + 
-                "• Don’t mark attendance manually unless necessary.\n" + 
-                "• Don’t share QR codes publicly.\n" + 
-                "• Don’t skip updating user details when changes occur." ); 
-        
+        manualArea.setText(
+            "# SYSTEM WORKFLOW\n\n" +
+            "1. Register User\n" +
+            "   • Fill in required fields: LRN, Full Name, Gender, Section, Contact Number, Adviser, Workplace.\n" +
+            "   • Upload a profile image.\n" +
+            "   • Click Register to save the user profile.\n\n" +
+
+            "2. Generate QR Code\n" +
+            "   • Go to the Generate QR module.\n" +
+            "   • Select the user, review information, and click Generate QR.\n" +
+            "   • Save the QR code securely.\n\n" +
+
+            "3. Mark Attendance\n" +
+            "   • Go to Mark Attendance.\n" +
+            "   • Scan or input the QR code.\n" +
+            "   • The system logs attendance automatically based on day rules.\n\n" +
+
+            "# ATTENDANCE RULES\n" +
+            "   • Monday–Thursday: Work hours 1:00 PM – 7:00 PM, grace period until 2:00 PM.\n" +
+            "   • Friday: Work hours 6:00 AM – 7:00 PM, grace period until 9:00 AM.\n" +
+            "   • Saturday–Sunday: Attendance is not allowed.\n\n" +
+
+            "### MAIN MENU FUNCTIONS ###\n" +
+            "   • Register User – Add and save user profile.\n" +
+            "   • Generate QR – Create QR codes.\n" +
+            "   • Mark Attendance – Scan QR to log attendance.\n" +
+            "   • View Attendance – Filter and export logs.\n" +
+            "   • View QRs – Preview generated QR codes.\n" +
+            "   • View User – See registered users.\n" +
+            "   • Update User – Modify user details.\n" +
+            "   • Delete User – Permanently remove a user.\n\n" +
+
+            "# DO’S:\n" +
+            "   • Double-check user info before generating QR codes.\n" +
+            "   • Use Update User to correct mistakes.\n" +
+            "   • Mark attendance daily and verify logs.\n" +
+            "   • Save QR codes securely.\n" +
+            "   • Use View Attendance to monitor attendance patterns.\n\n" +
+
+            "# DON’TS:\n" +
+            "   • Don’t falsify attendance records.\n" +
+            "   • Don’t delete users without confirming.\n" +
+            "   • Don’t generate QR codes with incomplete info.\n" +
+            "   • Don’t mark attendance manually unless necessary.\n" +
+            "   • Don’t share QR codes publicly.\n" +
+            "   • Don’t skip updating user details when changes occur.\n"
+        ); 
+
         manualArea.setEditable(false); 
         manualArea.setLineWrap(true); 
         manualArea.setWrapStyleWord(true); 
         manualArea.setFont(new Font("Segoe UI", Font.PLAIN, 14)); 
-        
+
         JScrollPane scrollPane = new JScrollPane(manualArea); 
         scrollPane.setPreferredSize(new Dimension(700, 400)); 
-        
+
         JOptionPane.showMessageDialog(this, scrollPane, "📘 Help Manual", JOptionPane.INFORMATION_MESSAGE);
-        
+
     }//GEN-LAST:event_btnManualActionPerformed
     
     private void setupShortcuts() { 
